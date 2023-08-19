@@ -1,6 +1,5 @@
 
-
-.BargainBazaar {
+/*.BargainBazaar {   code that makes it look like a 90s webpage
   position: relative;
   padding: 100px; 
   text-align: start;
@@ -17,7 +16,7 @@
   padding: 10px 20px; 
   color: rgb(8, 38, 83);
   z-index: 2; 
-  font-family: "Space Grotesk", sans-serif;
+  font-family: "MuseoModerno", sans-serif;
   font-size: 25px;
 }
 
@@ -29,5 +28,67 @@
   right: 0;
   background: rgb(255, 255, 255); 
   padding: 2px;    
+}*/
+
+body {
+  margin: 0;
+  padding: 0;
 }
 
+.BargainBazaar {
+  background: linear-gradient(to top, #3460a1, #182c43);
+  text-align: center;
+  width: 100%;
+  height: auto;
+  background-size: cover;
+  position: relative;
+  overflow: hidden;
+  border-radius: 1px 1px 85% 85% / 30%;
+  
+
+
+}
+.greeting {
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(-10px, 10px); /* Adjust the values for positioning */
+  color: white; /* Set the text color to white */
+  font-family: "MuseoModerno", sans-serif;
+}
+
+
+.BargainBazaar.overlay {
+  width: 100%;
+  height: 50%;
+  padding: 10px;
+  color: #ffffff;
+  background: linear-gradient(to top, #182c43, #587eaa,  #182c43, #182c43);
+}
+
+h1 {
+  font-size: 40px; /* Adjust the font size to make it smaller */
+  margin-bottom: 15px; /* Adjust margin for the smaller heading */
+  color: #ffffff; // use this to change header text colour
+  font-family: "MuseoModerno", sans-serif;
+}
+
+
+.description {
+  color: #ffcc00; /* Change to your desired color */
+  font-family: "MuseoModerno", sans-serif;
+}
+
+button {
+  border: none;
+  outline: none;
+  padding: 10px 20px;
+  border-radius: 50px;
+  color: #333;
+  background: #fff;
+  margin-bottom: 25px; /* Adjust margin for the smaller button */
+  margin-top: 15px; /* Adjust margin for the smaller button */
+  box-shadow: 0 3px 20px 0 #000;
+  cursor: pointer;
+  font-family: "MuseoModerno", sans-serif;
+}
