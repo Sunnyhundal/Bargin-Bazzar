@@ -12,14 +12,15 @@
 
 .greeting {
   position: absolute;
-  top: 0;
+  bottom: 0; /* Position at the bottom of the .BargainBazaar element */
   right: 0; 
   padding: 10px 20px; 
-  color: rgb(92, 92, 92);
+  color: rgb(255, 255, 255);
   z-index: 2; 
   font-family: "Space Grotesk", sans-serif;
+  font-size: 25px;
 }
-// unable to see in header
+
 
 .logo-container {
   position: absolute;
