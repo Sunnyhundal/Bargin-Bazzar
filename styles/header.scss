@@ -1,0 +1,26 @@
+.BargainBazaar {
+  position: relative;
+  padding: 100px; 
+  text-align: start;
+  background: #243850;
+  color: rgb(8, 38, 83);
+  font-size: 15px;
+  font-family: "Space Grotesk", sans-serif;
+}
+
+.greeting {
+  position: absolute;
+  top: 0;
+  right: 0; 
+  padding: 10px 20px; 
+  color: rgb(228, 58, 6);
+}
+
+.logo-container {
+  position: absolute;
+  top: 0;
+  left: 0; 
+  right: 0;
+  background: rgb(255, 255, 255); 
+  padding: 2px;    
+}
