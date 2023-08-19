@@ -4,7 +4,7 @@
   position: relative;
   padding: 100px; 
   text-align: start;
-  background: #243850;
+  background: linear-gradient(to top, #182c43, #587eaa,  #182c43, #182c43);
   color: rgb(8, 38, 83);
   font-size: 15px;
   font-family: "Space Grotesk", sans-serif;
@@ -12,10 +12,10 @@
 
 .greeting {
   position: absolute;
-  bottom: 0; /* Position at the bottom of the .BargainBazaar element */
+  top: 0; 
   right: 0; 
   padding: 10px 20px; 
-  color: rgb(255, 255, 255);
+  color: rgb(8, 38, 83);
   z-index: 2; 
   font-family: "Space Grotesk", sans-serif;
   font-size: 25px;
@@ -30,3 +30,4 @@
   background: rgb(255, 255, 255); 
   padding: 2px;    
 }
+
