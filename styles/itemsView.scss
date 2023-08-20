@@ -9,8 +9,8 @@
 }
 
 .mainPhoto{
-  flex-grow: 0;
-  align-items: start;
+  display: flex;
+  align-items: center;
   width: 400px;
   height: 400px;
   margin-top: 2rem;
@@ -29,6 +29,9 @@
   background-color: blue;
 }
 .sellerInfo{
+  width: 400px;
+  height: 200px;
+  display: flex;
   width: 400px;
   height: 200px;
   margin-top: 2rem;
