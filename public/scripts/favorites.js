@@ -28,7 +28,12 @@ const createItem = (favorite) => `
     <div class="card-body">
       <h5 class="card-title">${favorite.title}</h5>
       <span>${formatCurrency(favorite.price)}</span>
-      <a href="#" class="btn btn-primary">Go somewhere</a>
+      <form class="favorite-form" id="${favorite.item_id}">
+        <button type="submit">Favorite</button>
+      </form>
+      <form class="unFavorite-form" id="${favorite.id}">
+        <button type="submit">UnFavorite</button>
+      </form>
     </div>
   </div>
 `;
@@ -67,6 +72,40 @@ const renderFavorites = (favorites) => {
     });
 
     $('.favorites-container').append($row);
+  });
+
+  // temporary event listeners for testing favoring and unfavoring items
+  $('.favorite-form').on('submit', function(event) {
+    event.preventDefault();
+    const itemId = $(this).attr('id');
+
+    console.log(itemId);
+
+    $.ajax({
+      url: '/favorites',
+      method: 'POST',
+      data: {
+        itemId
+      },
+      error: (error) => {
+        console.log('Error: ', error);
+      }
+    });
+  });
+
+  $('.unFavorite-form').on('submit', function(event) {
+    event.preventDefault();
+    const favoriteId = $(this).attr('id');
+
+    console.log(favoriteId);
+
+    $.ajax({
+      url: `/favorites/${favoriteId}`,
+      method: 'DELETE',
+      error: (error) => {
+        console.log('Error: ', error);
+      }
+    });
   });
 };
 
