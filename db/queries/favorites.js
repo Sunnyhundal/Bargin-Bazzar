@@ -16,3 +16,5 @@ function favoritesForUser(id, favoritesDB) {
   }
   return userfavorites;
 }
+
+module.exports = { favoritesForUser };
