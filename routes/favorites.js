@@ -10,7 +10,7 @@ router.get("/", (req, res) => {
 
 // GET /favorites/:userId
 // API for getting the favorites for a user.
-router.get('/:userId', async (req, res) => {
+router.get('/:userId', async(req, res) => {
   const userId = req.params.userId;
   const response = await getFavoritesByUserId(userId);
 
@@ -29,10 +29,11 @@ router.get('/:userId', async (req, res) => {
 
 // POST /favorites
 // API for creating a favorite for a user.
-router.post('/', async (req, res) => {
-  const userId = req.session.userId;
+router.post('/', async(req, res) => {
+  const userId = 6; // hardcoded for now
   const itemId = req.body.itemId;
-  const response = await createFavorite(userId, itemId);
+
+  const response = await createFavorite(userId, Number(itemId));
 
   if (response.error) {
     res
@@ -43,14 +44,15 @@ router.post('/', async (req, res) => {
   }
 
   res
-    .status(200);
+    .status(200)
+    .json(response.favorite);
 });
 
 // DELETE /favorites/:favoriteId
 // API for deleting a favorite for a user.
 // unFavorite requires userId so that a user can only delete their own favorites.
-router.delete('/:favoriteId', async (req, res) => {
-  const userId = req.session.userId;
+router.delete('/:favoriteId', async(req, res) => {
+  const userId = 6; // hardcoded for now
   const favoriteId = req.params.favoriteId;
   const response = await unFavorite(favoriteId, userId);
 
@@ -63,7 +65,8 @@ router.delete('/:favoriteId', async (req, res) => {
   }
 
   res
-    .status(200);
+    .status(200)
+    .json({});
 });
 
 module.exports = router;
