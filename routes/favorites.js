@@ -2,11 +2,14 @@ const { getFavoritesByUserId, createFavorite, unFavorite } = require('../db/quer
 const express = require("express");
 const router = express.Router();
 
-// favorites-related routes
+// GET /favorites
+// Show the favorites page.
 router.get("/", (req, res) => {
   res.render("favorites");
 });
 
+// GET /favorites/:userId
+// API for getting the favorites for a user.
 router.get('/:userId', async (req, res) => {
   const userId = req.params.userId;
   const response = await getFavoritesByUserId(userId);
@@ -24,6 +27,8 @@ router.get('/:userId', async (req, res) => {
     .json(response.favorites);
 });
 
+// POST /favorites
+// API for creating a favorite for a user.
 router.post('/', async (req, res) => {
   const userId = req.session.userId;
   const itemId = req.body.itemId;
@@ -41,6 +46,9 @@ router.post('/', async (req, res) => {
     .status(200);
 });
 
+// DELETE /favorites/:favoriteId
+// API for deleting a favorite for a user.
+// unFavorite requires userId so that a user can only delete their own favorites.
 router.delete('/:favoriteId', async (req, res) => {
   const userId = req.session.userId;
   const favoriteId = req.params.favoriteId;
