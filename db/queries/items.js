@@ -50,7 +50,10 @@ const addItem = function(newItem) {
 const getAllItems = function() {
   return db
     .query(`SELECT * FROM items;`)
-    .then(res => res.rows)
+    .then(res => {
+      // console.log('test');
+      // console.log(res);
+      return res.rows;})
     .catch(err => {
       console.error(err.message);
       throw err;
@@ -68,9 +71,11 @@ const filterItemByPrice = function(minPrice, maxPrice) {
 
   return db
     .query(queryString)
-    .then((res) => res.rows)
+    .then((res) => { return res.rows; })
     .catch((err) => {
       console.error(err.message);
       throw err;
     });
 };
+
+module.exports = { addItem, getAllItems, filterItemByPrice };
