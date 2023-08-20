@@ -13,21 +13,21 @@ const db = require("../connection");
  *          thumnnail_url: string} } a new item
  * @return {Promise<{}>} A promise to the item.
  */
-const addItem = function(item) {
-  if (!item) {
+const addItem = function(newItem) {
+  if (!newItem) {
     console.error("Invalid item object");
     return Promise.resolve(null);
   }
 
   const queryParams = [
-    item.id,
-    item.title,
-    item.price,
-    item.is_sold,
-    item.created_at,
-    item.seller_id,
-    item.photo_url,
-    item.thumbnail_url
+    newItem.id,
+    newItem.title,
+    newItem.price,
+    newItem.is_sold,
+    newItem.created_at,
+    newItem.seller_id,
+    newItem.photo_url,
+    newItem.thumbnail_url
   ];
 
   const queryString = `INSERT INTO items (id, title, price, is_sold, created_at, seller_id, photo_url, thumbnail_url)

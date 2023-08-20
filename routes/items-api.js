@@ -18,12 +18,21 @@ router.get('/items', (req, res) => {
 // Create: add a new item
 router.post('/items/new', (req, res) => {
   const newItemData = req.body;
+
+  itemQueries.addItem(newItemData, (err, newItem) => {
+    if(err) {
+      console.error(err);
+      res.status(500).json({error: 'error occured'})
+    } else {
+      res.status(201).json(newItem);
+    }
+  })
 });
 
-// Read: display add new item form
-router.get('items/new', (req, res) => {
+// // Read: display add new item form
+// router.get('items/new', (req, res) => {
 
-})
+// })
 
 // Update: update an item by ID
 router.put('items/:itemId', (req, res) => {
