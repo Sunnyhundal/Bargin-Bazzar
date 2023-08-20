@@ -32,6 +32,42 @@ const getFavoritesByUserId = (userId) => {
     .catch((error) => ({ error }));
 };
 
+/**
+ * Create a favorite for a user.
+ *
+ * @param {number} userId - the id of the user
+ * @param {number} itemId - the id of the item
+ * @returns {Promise<{ error?: any }>}}
+ */
+const createFavorite = (userId, itemId) => {
+  const query = `
+    INSERT INTO favorites ($1, $2)
+  `;
+
+  return db.query(query, [userId, itemId])
+    .then(() => ({}))
+    .catch((error) => ({ error }));
+};
+
+/**
+ * Unfavorite an item.
+ * @param {number} favoriteId
+ * @param {number} userId
+ * @returns {Promise<{ error?: any }>}
+ */
+const unFavorite = (favoriteId, userId) => {
+  const query = `
+    DELETE FROM favorites
+    WHERE id = $1 AND user_id = $2;
+  `;
+
+  return db.query(query, [favoriteId, userId])
+    .then(() => ({}))
+    .catch((error) => ({ error }));
+};
+
 module.exports = {
-  getFavoritesByUserId
+  getFavoritesByUserId,
+  createFavorite,
+  unFavorite
 };
