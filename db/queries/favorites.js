@@ -41,11 +41,13 @@ const getFavoritesByUserId = (userId) => {
  */
 const createFavorite = (userId, itemId) => {
   const query = `
-    INSERT INTO favorites ($1, $2)
+    INSERT INTO favorites (user_id, item_id)
+    VALUES ($1, $2)
+    RETURNING *;
   `;
 
   return db.query(query, [userId, itemId])
-    .then(() => ({}))
+    .then((response) => ({ favorite: response.rows[0] }))
     .catch((error) => ({ error }));
 };
 
