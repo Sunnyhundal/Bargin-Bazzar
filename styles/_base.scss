@@ -19,3 +19,16 @@
     margin: 0; /* Remove any default margins */
     padding: 20px; /* Add padding for spacing */
   }
+
+  /* footer.css */
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1px;
+  background:  #182c43;
+  color: white;
+  text-align: center;
+  font-family: "MuseoModerno", sans-serif;
+}
