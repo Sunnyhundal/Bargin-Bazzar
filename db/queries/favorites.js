@@ -18,6 +18,8 @@ const getFavoritesByUserId = (userId) => {
   const query = `
     SELECT
       f.id AS id,
+      i.photo_url AS photo_url,
+      i.thumbnail_url AS thumbnail_url,
       i.title AS title,
       i.price AS price,
       i.id AS item_id
