@@ -33,6 +33,7 @@ const widgetApiRoutes = require('./routes/widgets-api');
 const usersRoutes = require('./routes/users');
 const itemsRoutes = require('./routes/items');
 const favoritesRoutes = require('./routes/favorites');
+const itemsRoutesAPI = require('./routes/items-api');
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -42,6 +43,7 @@ app.use('/api/widgets', widgetApiRoutes);
 app.use('/users', usersRoutes);
 app.use('/items', itemsRoutes);
 app.use('/favorites', favoritesRoutes);
+app.use('/itemsapi', itemsRoutesAPI); //Discuss the Mount Point with your group
 // Note: mount other resources here, using the same pattern above
 
 // Home page
