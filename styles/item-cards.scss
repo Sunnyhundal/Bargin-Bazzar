@@ -1,0 +1,26 @@
+.items-container {
+  .items-row {
+    display: flex;
+    list-style-type: none;
+
+    .item-card {
+      height: 400px;
+      width: 400px;
+
+      img {
+        object-fit: fill;
+        height: 200px;
+        width: 200px;
+      }
+
+      .card-price {
+        font-size: 20px;
+      }
+
+      .card-title {
+        font-size: 18px;
+        color: #808080;
+      }
+    }
+  }
+}
