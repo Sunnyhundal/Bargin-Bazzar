@@ -41,13 +41,27 @@ body {
   width: 100%;
   height: auto;
   background-size: cover;
-  position: relative;
   overflow: hidden;
   border-radius: 1px 1px 85% 85% / 30%;
-  
+  position: absolute;
+  top: 0;
+  padding-top: 50px; /* Add padding to create space at the top */
+  left: 0;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  transform-origin: top;
+  }
 
 
+h1 {
+  font-size: 40px;
+  color: #ffffff;
+  font-family: "MuseoModerno", sans-serif;
+  margin: 0; /* Remove any default margins */
+  padding: 20px; /* Add padding for spacing */
 }
+
+
 .greeting {
   position: absolute;
   top: 0;
@@ -66,29 +80,9 @@ body {
   background: linear-gradient(to top, #182c43, #587eaa,  #182c43, #182c43);
 }
 
-h1 {
-  font-size: 40px; /* Adjust the font size to make it smaller */
-  margin-bottom: 15px; /* Adjust margin for the smaller heading */
-  color: #ffffff; // use this to change header text colour
-  font-family: "MuseoModerno", sans-serif;
-}
-
 
 .description {
   color: #ffcc00; /* Change to your desired color */
   font-family: "MuseoModerno", sans-serif;
 }
 
-button {
-  border: none;
-  outline: none;
-  padding: 10px 20px;
-  border-radius: 50px;
-  color: #333;
-  background: #fff;
-  margin-bottom: 25px; /* Adjust margin for the smaller button */
-  margin-top: 15px; /* Adjust margin for the smaller button */
-  box-shadow: 0 3px 20px 0 #000;
-  cursor: pointer;
-  font-family: "MuseoModerno", sans-serif;
-}
