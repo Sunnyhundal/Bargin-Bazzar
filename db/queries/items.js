@@ -20,25 +20,30 @@ const addItem = function(newItem) {
   }
 
   const queryParams = [
-    newItem.id,
+    // newItem.id,
     newItem.title,
     newItem.price,
     newItem.is_sold,
-    newItem.created_at,
-    newItem.seller_id,
+    newItem.description,
+    // newItem.created_at,
+    // newItem.seller_id,
     newItem.photo_url,
     newItem.thumbnail_url
   ];
 
-  const queryString = `INSERT INTO items (id, title, price, is_sold, created_at, seller_id, photo_url, thumbnail_url)
-  VALUES ($1, $2, $3, $4, $5, $6, $7) RETURNING *;`;
+  // Hardcoding the seller_id for now
+  // is_sold is returning null atm
+  const queryString = `INSERT INTO items ( title, price, is_sold, description, photo_url, thumbnail_url, seller_id)
+  VALUES ($1, $2, $3, $4, $5, $6, 1) RETURNING *;`;
 
   return db
     .query(queryString, queryParams)
     .then(res => {
+      console.log(res);
       return res.rows[0];
     })
     .catch(err => {
+      console.log(err);
       return null;
     });
 };
@@ -78,4 +83,23 @@ const filterItemByPrice = function(minPrice, maxPrice) {
     });
 };
 
-module.exports = { addItem, getAllItems, filterItemByPrice };
+/**
+ *
+ * @param {number} itemId
+ * @returns {Promise<{}>} A promise to the item.
+ */
+
+const deleteItem = function(itemId) {
+  const queryString = `
+    DELETE * FROM items
+    WHERE id = $1;`;
+
+  return db.query(queryString, [itemId])
+    .then((res)=> {return res.rows;})
+    .catch((err) => {
+      console.error(err.message);
+      throw err;
+    })
+};
+
+module.exports = { addItem, getAllItems, filterItemByPrice, deleteItem };
