@@ -1,0 +1,34 @@
+.BargainBazaar { // this is the blue bar across the top of the page
+  background: linear-gradient(to top, #3460a1, #182c43);
+  text-align: center;
+  width: 100%;
+  height: auto;
+  background-size: cover;
+  overflow: hidden;
+  border-radius: 1px 1px 85% 85% / 30%;
+  position: absolute;
+  top: 0;
+  padding-top: 50px; /* Add padding to create space at the top */
+  left: 0;
+  }
+
+  h1 { // this effects the main title heading (BargainBazar) or whichever text is in <h1><h1> in the index.ejs file for that page
+    font-size: 40px;
+    color: #ffffff;
+    font-family: "MuseoModerno", sans-serif;
+    margin: 0; /* Remove any default margins */
+    padding: 20px; /* Add padding for spacing */
+  }
+
+  /* footer.css */
+.footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1px;
+  background:  #182c43;
+  color: white;
+  text-align: center;
+  font-family: "MuseoModerno", sans-serif;
+}
