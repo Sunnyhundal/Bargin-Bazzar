@@ -1,8 +1,9 @@
-.BargainBazaar {
+
+/*.BargainBazaar {   code that makes it look like a 90s webpage
   position: relative;
   padding: 100px; 
   text-align: start;
-  background: #243850;
+  background: linear-gradient(to top, #182c43, #587eaa,  #182c43, #182c43);
   color: rgb(8, 38, 83);
   font-size: 15px;
   font-family: "Space Grotesk", sans-serif;
@@ -10,11 +11,15 @@
 
 .greeting {
   position: absolute;
-  top: 0;
+  top: 0; 
   right: 0; 
   padding: 10px 20px; 
-  color: rgb(228, 58, 6);
+  color: rgb(8, 38, 83);
+  z-index: 2; 
+  font-family: "MuseoModerno", sans-serif;
+  font-size: 25px;
 }
+
 
 .logo-container {
   position: absolute;
@@ -23,4 +28,61 @@
   right: 0;
   background: rgb(255, 255, 255); 
   padding: 2px;    
+}*/
+
+body {
+  margin: 0;
+  padding: 0;
 }
+
+.BargainBazaar {
+  background: linear-gradient(to top, #3460a1, #182c43);
+  text-align: center;
+  width: 100%;
+  height: auto;
+  background-size: cover;
+  overflow: hidden;
+  border-radius: 1px 1px 85% 85% / 30%;
+  position: absolute;
+  top: 0;
+  padding-top: 50px; /* Add padding to create space at the top */
+  left: 0;
+  animation-duration: 2s;
+  animation-iteration-count: infinite;
+  transform-origin: top;
+  }
+
+
+h1 {
+  font-size: 40px;
+  color: #ffffff;
+  font-family: "MuseoModerno", sans-serif;
+  margin: 0; /* Remove any default margins */
+  padding: 20px; /* Add padding for spacing */
+}
+
+
+.greeting {
+  position: absolute;
+  top: 0;
+  right: 0;
+  transform: translate(-10px, 10px); /* Adjust the values for positioning */
+  color: white; /* Set the text color to white */
+  font-family: "MuseoModerno", sans-serif;
+}
+
+
+.BargainBazaar.overlay {
+  width: 100%;
+  height: 50%;
+  padding: 10px;
+  color: #ffffff;
+  background: linear-gradient(to top, #182c43, #587eaa,  #182c43, #182c43);
+}
+
+
+.description {
+  color: #ffcc00; /* Change to your desired color */
+  font-family: "MuseoModerno", sans-serif;
+}
+

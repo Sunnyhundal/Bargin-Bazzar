@@ -29,10 +29,13 @@
   <!-- External JS -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
+  <!--------bootstrap-->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+
 
   <!-- App JS -->
-  <script type="text/javascript" src="/scripts/client.js"></script>
-  <script type="text/javascript" src="scripts/composer-char-counter.js"></script>
+  <script type="text/javascript" src="/scripts/items.js"></script>
+  <script type="text/javascript" src="scripts/users.js"></script>
 
   <script src="/vendor/jquery-3.0.0.js"></script>
   <script defer src="/scripts/users.js"></script>
@@ -43,9 +46,19 @@
 
 
   <main class="container">
-    <section class="mainPhoto"><p> Photo</p></section>
-    <section class="info"><p>info</p></section>
-    <section class="sellerInfo"></section>
+
+    <div class="flex">
+      <section class="mainPhoto"><img src="" alt=""></section>
+
+    </div>
+    <div class="flex">
+      <section class="info">
+        <p></p>
+        <a href="mailto: [Seller's Email]&subject=[Someone%20is%20Interested%20in%20One%20of%20Your%20Items!]&body=Body-goes-here" target="_blank" class="btn btn-primary">Contact Seller</a>
+      </section>
+      <section class="sellerInfo"></section>
+
+    </div>
 
 
   </main>
