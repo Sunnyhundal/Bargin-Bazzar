@@ -1,25 +1,56 @@
 .items-container {
+  display: flex;
+  flex-direction: column;
+  row-gap: 18px;
+  column-gap: 15px;
+
   .items-row {
     display: flex;
     list-style-type: none;
 
     .item-card {
-      height: 400px;
-      width: 400px;
+      height: 300px;
+      width: 230px;
+
+      .card-body {
+        padding: 16px;
+      }
+
+      .card-title-container {
+        display: flex;
+        justify-content: space-between;
+      }
 
       img {
         object-fit: fill;
-        height: 200px;
-        width: 200px;
+        height: 230px;
+        width: 230px;
       }
 
       .card-price {
-        font-size: 20px;
+        font-size: 18px;
       }
 
       .card-title {
         font-size: 18px;
-        color: #808080;
+        color: #6C757D;
+      }
+
+      .favorite-form-button {
+        background: transparent;
+        border: none;
+      }
+      .unfavorite-form-button {
+        background: transparent;
+        border: none;
+      }
+
+      .favorite-icon {
+        color: #DDE108;
+      }
+
+      .unfavorite-icon {
+        color: #D9D9D9;
       }
     }
   }

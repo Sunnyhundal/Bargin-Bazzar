@@ -35,13 +35,15 @@ const createItem = (item) => `
     <img class="item-card-thumbnail" src="${item.photo_url}" alt="Item thumbnail">
     <div class="card-body">
       <div class="card-price">${formatCurrency(item.price)}</div>
-      <h5 class="card-title">${item.title}</h5>
-      <form class="favorite-form" id="${item.item_id}">
-        <button type="submit">Favorite</button>
-      </form>
-      <form class="unFavorite-form" id="${item.id}">
-        <button type="submit">UnFavorite</button>
-      </form>
+      <div class="card-title-container">
+        <h5 class="card-title">${item.title}</h5>
+        <form class="favorite-form" id="${item.item_id}">
+          <button class="favorite-form-button" type="submit"><i class="fa-solid fa-star favorite-icon"></i></button>
+        </form>
+        <form class="unFavorite-form" id="${item.id}">
+          <button class="unfavorite-form-button" type="submit"><i class="fa-solid fa-star unfavorite-icon"></i></button>
+        </form>
+      </div>
     </div>
   </li>
 `;
