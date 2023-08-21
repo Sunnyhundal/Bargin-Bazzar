@@ -2,6 +2,10 @@
 
 const ITEMS_PER_ROW = 4;
 
+const itemsStore = {
+  items: [],
+};
+
 /**
  * Formats a price to Canadian dollar string.
  *
@@ -31,18 +35,21 @@ const formatCurrency = (price) => {
  * @return {string} HTML string of the item card
  */
 const createItem = (item) => `
-  <li class="item-card" style="width: 18rem;">
+  <li class="item-card">
     <img class="item-card-thumbnail" src="${item.photo_url}" alt="Item thumbnail">
     <div class="card-body">
       <div class="card-price">${formatCurrency(item.price)}</div>
       <div class="card-title-container">
         <h5 class="card-title">${item.title}</h5>
-        <form class="favorite-form" id="${item.item_id}">
-          <button class="favorite-form-button" type="submit"><i class="fa-solid fa-star favorite-icon"></i></button>
-        </form>
-        <form class="unFavorite-form" id="${item.id}">
-          <button class="unfavorite-form-button" type="submit"><i class="fa-solid fa-star unfavorite-icon"></i></button>
-        </form>
+        ${(item.favorite_id || item.is_favorite) ? `
+            <form class="unFavorite-form" id="${item.favorite_id}">
+              <button class="unfavorite-form-button" type="submit"><i class="fa-solid fa-star unfavorite-icon"></i></button>
+            </form>
+          ` : `
+            <form class="favorite-form" id="${item.item_id}">
+              <button class="favorite-form-button" type="submit"><i class="fa-solid fa-star favorite-icon"></i></button>
+            </form>
+          `}
       </div>
     </div>
   </li>
@@ -66,6 +73,13 @@ const createRow = (_, index) => {
  * @return {void}
  */
 const renderItemCards = (mainContainerName, items) => {
+  // initially store items in itemsStore for later modifications
+  itemsStore.items = items;
+
+  // empty if there are items in the container
+  $(mainContainerName).empty();
+
+  // create a new container for items
   const $container = $('<div class="items-container"></div>');
 
   const rowSize = Math.ceil(items.length / ITEMS_PER_ROW);
@@ -98,6 +112,22 @@ const renderItemCards = (mainContainerName, items) => {
       data: {
         itemId
       },
+      success: (favorite) => {
+        itemsStore.items = items.map((item) => {
+          if (item.item_id === favorite.item_id) {
+            return {
+              ...item,
+              favorite_id: favorite.id,
+              is_favorite: true,
+            };
+          }
+
+          return item;
+        });
+
+        // rerender items cards for updated favorites
+        renderItemCards(mainContainerName, itemsStore.items);
+      },
       error: (error) => {
         console.log('Error: ', error);
       }
@@ -111,6 +141,22 @@ const renderItemCards = (mainContainerName, items) => {
     $.ajax({
       url: `/favorites/${favoriteId}`,
       method: 'DELETE',
+      success: () => {
+        itemsStore.items = items.map((item) => {
+          if (item.favorite_id === Number(favoriteId)) {
+            return {
+              ...item,
+              favorite_id: null,
+              is_favorite: false,
+            };
+          }
+
+          return item;
+        });
+
+        // rerender items cards for updated favorites
+        renderItemCards(mainContainerName, itemsStore.items);
+      },
       error: (error) => {
         console.log('Error: ', error);
       }
