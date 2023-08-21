@@ -8,11 +8,12 @@ router.get("/", (req, res) => {
   itemDB.getAllItems()
     .then((items) => {
       // console.log(items);
-      res.json({ items });
+      return res.json({ items });
     })
     .catch((err) => {
       console.error(err.message);
       res.status(500).json({ error: err.message });
+      throw err;
     });
 });
 
@@ -20,14 +21,16 @@ router.get("/", (req, res) => {
 router.post("/items/new", (req, res) => {
   const newItemData = req.body;
 
-  itemDB.addItem(newItemData, (err, newItem) => {
-    if (err) {
-      console.error(err);
-      res.status(500).json({ error: "error occured" });
-    } else {
+  itemDB.addItem(newItemData)
+    .then((newItem) => {
       res.status(201).json(newItem);
-    }
-  });
+      console.log(newItem);
+      return newItem;
+    })
+    .catch((err) => {
+      console.error(err.message);
+      res.status(500).json({ error: err.message });
+    });
 });
 
 // // Read: display add new item form
