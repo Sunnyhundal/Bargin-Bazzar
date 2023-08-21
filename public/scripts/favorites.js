@@ -24,7 +24,7 @@ const formatCurrency = (price) => {
  */
 const createItem = (favorite) => `
   <div class="card" style="width: 18rem;">
-    <img class="card-img-top" src="..." alt="Card image cap">
+    <img class="card-img-top" src="${favorite.photo_url}" alt="Card image cap">
     <div class="card-body">
       <h5 class="card-title">${favorite.title}</h5>
       <span>${formatCurrency(favorite.price)}</span>
