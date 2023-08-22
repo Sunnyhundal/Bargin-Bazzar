@@ -2,21 +2,18 @@ const express = require("express");
 const router = express.Router();
 const itemDB = require("../db/queries/items");
 
-
 //this routes start with /api/items
 
 // Read: display all items
 router.get("/", (req, res) => {
-  // console.log("we are hitting the get items aPi route");
+
   itemDB.getAllItems()
     .then((items) => {
-      // console.log(items);
-      return res.json({ items });
+      res.render('item',{ items });
     })
     .catch((err) => {
       console.error(err.message);
       res.status(500).json({ error: err.message });
-      throw err;
     });
 });
 
