@@ -7,6 +7,10 @@
     <meta charset="UTF-8" >
     <meta http-equiv="X-UA-Compatible" content="IE=edge" >
     <meta name="viewport" content="width=device-width, initial-scale=3.0" >
+    
+    <!-- Link to ejs files -->
+     <%- include('./partials/_header') %> <!-- Include the header -->
+     <%- include('/search_bar') %> <!-- Include the searchbar -->
   
         <!-- Link to stylesheet -->
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -26,22 +30,5 @@
     <script src="/vendor/jquery-3.0.0.js"></script>
     <script defer src="/scripts/app.js"></script>
   </head>
-
-
-<body>
-  <header>
-    <div class="BargainBazaar">
-      <div class="greeting">Hello, user
-      </div>
-      <div class="logo-container">
-        <h1>BargainBazaar</h1>
-        <p class="description">A Place For All Your Buy And Sell Needs</p>
-        <div class="footer">
-          <p>This is the footer content.</p>
-        </div>
-      </div>
-    </div>
-  </header>
-</body>
 
 </html>
