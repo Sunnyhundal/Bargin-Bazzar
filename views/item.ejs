@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Item listing</title>
+
+  <meta charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+
+  <!-- App CSS -->
+  <link rel="stylesheet" href="/styles/main.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/itemsView.css" type="text/css" />
+
+
+  <!-- External JS -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+  <script src="/vendor/jquery-3.0.0.js"></script>
+
+  <!--------bootstrap-->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+
+</head>
+background is applied from main.css temporary to be able to see the containers</br>
+item.description needs to be added to database with updated seeds file
+<body>
+  <main class="container">
+
+    <div class="flex">
+      <section class="mainPhoto" style="background-image: url('<%= item.photo_url %>'); background-size: 100% 100%;"></section>
+    </div>
+    <div class="flex">
+      <section class="info">
+        <ul>
+          <li><%= item.title %></li>
+          <li><%= item.is_sold %></li>
+          <li><%= item.description %></li>
+          <li><%= item.created_at %></li>
+        </ul>
+        <a href="mailto: [Seller's Email]&subject=[Someone%20is%20Interested%20in%20One%20of%20Your%20Items!]&body=Body-goes-here" target="_blank" class="btn btn-primary">Contact Seller</a>
+      </section>
+      <section class="sellerInfo"></section>
+    </div>
+
+
+  </main>
+
+
+
+</body>
+
+</html>
