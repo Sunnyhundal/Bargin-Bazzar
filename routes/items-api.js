@@ -27,9 +27,7 @@ router.post("/new", (req, res) => {
 
   itemDB.addItem(newItemData)
     .then((newItem) => {
-      res.status(201).json(newItem);
-      console.log(newItem);
-      console.log('success');
+      res.redirect('../../items');
     })
     .catch((err) => {
       console.error(err);
@@ -52,7 +50,7 @@ router.delete("/:itemId", (req, res) => {
       if(res.error) {
         res.status(500).json( { error: 'Cannot delete item'});
       } else {
-        res.status(200).json({});
+        res.redirect('../../items');
       }
     })
     .catch((err) => {
