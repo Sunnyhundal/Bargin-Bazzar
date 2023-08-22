@@ -2,21 +2,18 @@ const express = require("express");
 const router = express.Router();
 const itemDB = require("../db/queries/items");
 
-
 //this routes start with /api/items
 
 // Read: display all items
 router.get("/", (req, res) => {
-  // console.log("we are hitting the get items aPi route");
+
   itemDB.getAllItems()
     .then((items) => {
-      // console.log(items);
-      return res.json({ items });
+      res.render('item',{ items });
     })
     .catch((err) => {
       console.error(err.message);
       res.status(500).json({ error: err.message });
-      throw err;
     });
 });
 
@@ -27,9 +24,7 @@ router.post("/new", (req, res) => {
 
   itemDB.addItem(newItemData)
     .then((newItem) => {
-      res.status(201).json(newItem);
-      console.log(newItem);
-      console.log('success');
+      res.redirect('../../items');
     })
     .catch((err) => {
       console.error(err);
@@ -52,7 +47,7 @@ router.delete("/:itemId", (req, res) => {
       if(res.error) {
         res.status(500).json( { error: 'Cannot delete item'});
       } else {
-        res.status(200).json({});
+        res.redirect('../../items');
       }
     })
     .catch((err) => {
