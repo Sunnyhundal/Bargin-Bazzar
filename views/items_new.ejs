@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Item listing</title>
+
+  <meta charset="UTF-8" >
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+  <!-- <title>Tweeter - Home Page</title> -->
+
+  <!-- External CSS -->
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+    type="text/css"
+  />
+
+  <!-------Internal CSS-->
+  <link rel="stylesheet" href="styles/layout.css" />
+
+
+  <!-- App CSS -->
+  <link rel="stylesheet" href="/styles/layout.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/main.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/itemsView.css" type="text/css" />
+
+
+  <!-- External JS -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+  <!--------bootstrap-->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+
+
+  <!-- App JS -->
+  <script type="text/javascript" src="/scripts/app.js"></script>
+  <script type="text/javascript" src="scripts/users.js"></script>
+  <script type="text/javascript" src="scripts/items.js"></script>
+
+
+  <script src="/vendor/jquery-3.0.0.js"></script>
+  <script defer src="/scripts/users.js"></script>
+
+</head>
+
+<body>
+  <main class="container">
+
+    <div class="flex">
+
+      <section class="mainForm">
+        <h3>Create a new listing</h3>
+
+      <form action="/api/items/new" method="post">
+        <div class="mb-2">
+          <label for="itemTitle" class="form-label">Title</label>
+          <input type="text" class="form-control" id="title" name="title" placeholder="Title of item">
+        </div>
+
+        <div class="mb-2">
+          <label for="itemPrice" class="form-label">Price</label>
+          <input type="number" class="form-control" id="price" name="price" placeholder="Price of item">
+        </div>
+
+        <div class="mb-2">
+          <label for="itemPhoto" class="form-label">Photo Url</label>
+          <input type="url" class="form-control" id="itemPhoto" name='photo_url' placeholder="http://">
+          <!-- <p>upload an image of your photo using a service like <a href="https://imgur.com">Imgur</a></p> -->
+        </div>
+
+        <div class="mb-2">
+          <label for="thumbnailPhoto" class="form-label">Thumbnail Photo Url</label>
+          <input type="url" class="form-control" id="thumbnailPhoto" name='thumbnail_url' placeholder="http://">
+          <p>upload an image of your photo using a service like <a href="https://imgur.com">Imgur</a></p>
+        </div>
+
+
+        <div class="mb-3">
+          <label for="itemDescription" class="form-label">Description of your item</label>
+          <textarea class="form-control" id="itemDescription" name="description"  rows="3"></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary">Submit</button>
+      </form>
+
+
+
+
+
+
+
+      </section>
+
+    </div>
+
+
+
+  </main>
+
+
+
+</body>
+
+</html>

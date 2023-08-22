@@ -1,45 +1,62 @@
 .container{
   display: flex;
   flex-direction: row;
+  justify-content: center;
   align-items: center;
   width: 100%;
-  margin-top: 2rem;
-  background-color: #EBEBEB;
+  height: 100%;
 
 }
 
 .mainPhoto{
   display: flex;
   align-items: center;
-  width: 100px;
+  flex-direction: column;
+  width: 400px;
   height: 400px;
   margin-top: 2rem;
   margin-bottom: 16rem;
   margin-left: 2rem;
   margin-right: 2rem;
-  background-color: green;
+  background-color: white;
 }
-.info{
-  display: flex;
 
+.mainForm{
+  display: flex;
   align-items: center;
-  width: 100px;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  margin-top: 2rem;
+  margin-bottom: 16rem;
+  margin-left: 2rem;
+  margin-right: 2rem;
+  background-color: white;
+}
+
+.info{
+
+  flex-direction: column;
+  justify-items: center;
+  width: 400px;
   height: 400px;
   margin-top: 2rem;
   margin-bottom: 2rem;
   margin-left: 2rem;
   margin-right: 2rem;
-  background-color: blue;
+  background-color: white;
 }
 .sellerInfo{
+  width: 400px;
+  height: 200px;
   display: flex;
-  width: 100px;
-  height: 400px;
+  width: 400px;
+  height: 200px;
   margin-top: 2rem;
   margin-bottom: 2rem;
   margin-left: 2rem;
   margin-right: 2rem;
-  background-color: red;
+  background-color: white;
 }
-
-
