@@ -38,11 +38,11 @@ const addItem = function(newItem) {
 
   return db
     .query(queryString, queryParams)
-    .then(res => {
+    .then((res) => {
       console.log(res);
       return res.rows[0];
     })
-    .catch(err => {
+    .catch((err) => {
       console.log(err);
       return null;
     });
@@ -55,11 +55,30 @@ const addItem = function(newItem) {
 const getAllItems = function() {
   return db
     .query(`SELECT * FROM items;`)
-    .then(res => {
-      // console.log('test');
-      // console.log(res);
-      return res.rows;})
-    .catch(err => {
+    .then((res) => {
+      return res.rows;
+    })
+    .catch((err) => {
+      console.error(err.message);
+      throw err;
+    });
+};
+
+/**
+ * Get one item from the database.
+ * @return {Promise<Array>} A promise the items
+ */
+const getItemById = function(itemId) {
+  return db
+    .query(`SELECT * FROM items WHERE id = $1;`, [itemId])
+    .then((result) => {
+      if (result.rows.length > 0) {
+        return result.rows[0];
+      } else {
+        throw new Error("Item not found");
+      }
+    })
+    .catch((err) => {
       console.error(err.message);
       throw err;
     });
@@ -76,7 +95,9 @@ const filterItemByPrice = function(minPrice, maxPrice) {
 
   return db
     .query(queryString)
-    .then((res) => { return res.rows; })
+    .then((res) => {
+      return res.rows;
+    })
     .catch((err) => {
       console.error(err.message);
       throw err;
@@ -94,12 +115,21 @@ const deleteItem = function(itemId) {
     DELETE * FROM items
     WHERE id = $1;`;
 
-  return db.query(queryString, [itemId])
-    .then((res)=> {return res.rows;})
+  return db
+    .query(queryString, [itemId])
+    .then((res) => {
+      return res.rows;
+    })
     .catch((err) => {
       console.error(err.message);
       throw err;
-    })
+    });
 };
 
-module.exports = { addItem, getAllItems, filterItemByPrice, deleteItem };
+module.exports = {
+  addItem,
+  getAllItems,
+  filterItemByPrice,
+  deleteItem,
+  getItemById
+};

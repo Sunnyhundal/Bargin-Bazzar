@@ -7,9 +7,11 @@ const itemDB = require("../db/queries/items");
 // Read: display all items
 router.get("/", (req, res) => {
 
-  itemDB.getAllItems()
+  itemDB
+    .getAllItems()
     .then((items) => {
-      res.render('item',{ items });
+      res.render("item-list", { items });
+
     })
     .catch((err) => {
       console.error(err.message);
@@ -19,17 +21,35 @@ router.get("/", (req, res) => {
 
 // Create: add a new item
 router.post("/new", (req, res) => {
-
   const newItemData = req.body;
 
-  itemDB.addItem(newItemData)
+  itemDB
+    .addItem(newItemData)
     .then((newItem) => {
-      res.redirect('../../items');
+
+      res.redirect("../../items");
+
     })
     .catch((err) => {
       console.error(err);
       res.status(500).json({ error: "An error occurred" });
     });
+});
+
+// Read: display an item by ID
+router.get("/:itemId", (req, res) => {
+  const itemId = req.params.itemId;
+
+  itemDB
+    .getItemById(itemId)
+    .then((item) => {
+      console.log(item);
+      res.render("item", { item });
+  })
+  .catch((err) => {
+    console.error(err.message);
+    res.send("error occured");
+  })
 });
 
 // Update: update an item by ID
@@ -42,18 +62,20 @@ router.put("/:itemId", (req, res) => {
 router.delete("/:itemId", (req, res) => {
   const itemId = req.params.itemId;
 
-  itemDB.deleteItem(itemId)
+  itemDB
+    .deleteItem(itemId)
     .then((result) => {
-      if(res.error) {
-        res.status(500).json( { error: 'Cannot delete item'});
+      if (res.error) {
+        res.status(500).json({ error: "Cannot delete item" });
       } else {
-        res.redirect('../../items');
+
+        res.redirect("../../items");
+
       }
     })
     .catch((err) => {
       console.error(err);
-      res.status(500)
-      .json( {error: 'An error occured'});
+      res.status(500).json({ error: "An error occured" });
     });
 });
 
