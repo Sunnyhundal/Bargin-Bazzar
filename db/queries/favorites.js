@@ -17,7 +17,7 @@ const db = require('../connection');
 const getFavoritesByUserId = (userId) => {
   const query = `
     SELECT
-      f.id AS id,
+      f.id AS favorite_id,
       i.photo_url AS photo_url,
       i.thumbnail_url AS thumbnail_url,
       i.title AS title,
