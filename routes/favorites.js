@@ -30,7 +30,7 @@ router.get('/:userId', async(req, res) => {
 // POST /favorites
 // API for creating a favorite for a user.
 router.post('/', async(req, res) => {
-  const userId = 6; // hardcoded for now
+  const userId = req.cookies.userId; // hardcoded for now
   const itemId = req.body.itemId;
 
   const response = await createFavorite(userId, Number(itemId));
@@ -52,7 +52,7 @@ router.post('/', async(req, res) => {
 // API for deleting a favorite for a user.
 // unFavorite requires userId so that a user can only delete their own favorites.
 router.delete('/:favoriteId', async(req, res) => {
-  const userId = 6; // hardcoded for now
+  const userId = req.cookies.userId; // hardcoded for now
   const favoriteId = req.params.favoriteId;
   const response = await unFavorite(favoriteId, userId);
 
