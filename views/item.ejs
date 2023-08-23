@@ -10,8 +10,13 @@
 
   <!-- App CSS -->
   <link rel="stylesheet" href="/styles/main.css" type="text/css" />
+<<<<<<< HEAD
   <link rel="stylesheet" href="/styles/itemsView.css" type="text/css" />
 
+=======
+  <link rel="stylesheet" href="/styles/item-listing.css" type="text/css">
+  <link rel="stylesheet" href="/styles/is-sold-banner.css" type="text/css" />
+>>>>>>> 920ce370900c9e19763a2d3c8fa4de437c7b1ed4
 
   <!-- External JS -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -21,6 +26,7 @@
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
 
 </head>
+<<<<<<< HEAD
 background is applied from main.css temporary to be able to see the containers</br>
 item.description needs to be added to database with updated seeds file
 <body>
@@ -47,6 +53,53 @@ item.description needs to be added to database with updated seeds file
 
 
 
+=======
+<!-- background is applied from main.css temporary to be able to see the containers</br>
+item.description needs to be added to database with updated seeds file -->
+<body>
+  <main class="container">
+    <div class="item">
+      <figure class="item-photo">
+        <img src="<%= item.photo_url %>" alt="<%= item.title %>">
+      </figure>
+    </div>
+    <div class="item">
+      <section class="item-details">
+        <h2><%= item.title %></h2>
+        <div id="soldBanner" class="banner">AVAILABLE</div>
+        <p><%= item.description %></p>
+        Posted At: <span id="createdAt"></span>
+        <a href="mailto: [Seller's Email]&subject=[Someone%20is%20Interested%20in%20One%20of%20Your%20Items!]&body=Body-goes-here" target="_blank" class="btn btn-primary">Contact Seller</a>
+      </section>
+      <section class="sellerInfo">
+
+      </section>
+    </div>
+  </main>
+
+  <script>
+    $(document).ready(function() {
+  var isSold = <%= item.is_sold %>;
+
+  if (isSold) {
+    $("#soldBanner").text("SOLD").removeClass("available");
+  } else {
+    $("#soldBanner").text("AVAILABLE").addClass("available");
+  }
+});
+
+function formatCreatedAt(dateString) {
+    const options = { year: 'numeric', month: 'long', day: 'numeric'};
+    return new Date(dateString).toLocaleDateString(undefined, options);
+  }
+
+  $(document).ready(function() {
+    const createdAt = '<%= item.created_at %>';
+    const formattedDate = formatCreatedAt(createdAt);
+    $("#createdAt").text(formattedDate);
+  });
+  </script>
+>>>>>>> 920ce370900c9e19763a2d3c8fa4de437c7b1ed4
 </body>
 
 </html>
