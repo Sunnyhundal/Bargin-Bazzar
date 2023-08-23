@@ -24,31 +24,28 @@
   </head>
   <!-- background is applied from main.css temporary to be able to see the containers</br>
 item.description needs to be added to database with updated seeds file -->
-  <!-- Seller info needed currently waiting to be able to change items api route -->
-  <body>
-    <main class="container">
-      <div class="item">
-        <figure class="item-photo">
-          <img src="<%= item.photo_url %>" alt="<%= item.title %>" />
-        </figure>
-      </div>
-      <div class="item">
-        <section class="item-details">
-          <h2><%= item.title %></h2>
-          <div id="soldBanner" class="banner">AVAILABLE</div>
-          <p><%= item.description %></p>
-          Posted At: <span id="createdAt"></span>
-          <a
-            href="mailto: [Seller's Email]&subject=[Someone%20is%20Interested%20in%20One%20of%20Your%20Items!]&body=Body-goes-here"
-            target="_blank"
-            class="btn btn-primary"
-            >Contact Seller</a
-          >
-        </section>
-        <section class="sellerInfo"></section>
-      </div>
-    </main>
+<body>
+  <main class="container">
+    <div class="item">
+      <figure class="item-photo">
+        <img src="<%= item.photo_url %>" alt="<%= item.title %>">
+      </figure>
+    </div>
+    <div class="item">
+      <section class="item-details">
+        <h2><%= item.title %></h2>
+        <div id="soldBanner" class="banner">AVAILABLE</div>
+        <p><%= item.description %></p>
+        Posted At: <span id="createdAt"></span>
 
+        <<a href="mailto:<%= userEmail %>?subject=%5BSomeone%20is%20interested%20in%20your%20item%3A%20<%= item.title %>&body=Hi%2C%0A%0ASomeone%20has%20expressed%20interest%20in%20the%20following%20item%3A%0Alocalhost%3A8080%2Fapi%2Fitem%2F<%= item.id %>%0A%0AThank%20you%2C%0A%0ABargainBazaar%20Team" target="_blank" class="btn btn-primary">Contact Seller</a>
+
+      </section>
+      <section class="sellerInfo">
+
+      </section>
+    </div>
+  </main>
     <script src="public/scripts/components/sold-banner.js"></script>
 
     <script>
