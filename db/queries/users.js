@@ -7,4 +7,20 @@ const getUsers = () => {
     });
 };
 
-module.exports = { getUsers };
+const getEmailByUserId = (userId) => {
+  console.log(userId);
+  return db
+  .query(`SELECT email FROM users WHERE id = $1;`, [userId])
+    .then((results) => {
+      if (results.rows.length > 0) {
+        return results.rows[0].email;
+      }else {
+        throw new Error("User not found");
+      }
+    });
+};
+
+
+
+module.exports = { getUsers, getEmailByUserId };
+
