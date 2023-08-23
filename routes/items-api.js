@@ -10,7 +10,7 @@ router.get("/", (req, res) => {
   itemDB
     .getAllItems()
     .then((items) => {
-      res.render("item-list", { items });
+      res.render("items-list", { items });
 
     })
     .catch((err) => {
