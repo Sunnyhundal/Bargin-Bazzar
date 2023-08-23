@@ -26,9 +26,7 @@ router.post("/new", (req, res) => {
   itemDB
     .addItem(newItemData)
     .then((newItem) => {
-
-      res.redirect("../../items");
-
+      res.redirect("/api/items");
     })
     .catch((err) => {
       console.error(err);
@@ -59,18 +57,16 @@ router.put("/:itemId", (req, res) => {
 });
 
 // Destroy: delete an item by ID
-router.delete("/:itemId", (req, res) => {
+router.delete("/:itemId/delete", (req, res) => {
   const itemId = req.params.itemId;
 
   itemDB
     .deleteItem(itemId)
     .then((result) => {
-      if (res.error) {
+      if (result.error) {
         res.status(500).json({ error: "Cannot delete item" });
       } else {
-
-        res.redirect("../../items");
-
+        res.redirect("api/items");
       }
     })
     .catch((err) => {

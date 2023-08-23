@@ -2,8 +2,6 @@
 <html lang="en">
 
 <head>
-  <title>Item listing</title>
-
   <meta charset="UTF-8" >
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <meta name="viewport" content="width=device-width, initial-scale=1.0" >
@@ -20,9 +18,11 @@
   <!--------bootstrap-->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
 
+  <title>Item listing</title>
 </head>
 <!-- background is applied from main.css temporary to be able to see the containers</br>
 item.description needs to be added to database with updated seeds file -->
+<!-- Seller info needed currently waiting to be able to change items api route -->
 <body>
   <main class="container">
     <div class="item">
@@ -44,27 +44,18 @@ item.description needs to be added to database with updated seeds file -->
     </div>
   </main>
 
+  <script src="public/scripts/components/sold-banner.js"></script>
   <script>
+    function formatCreatedAt(dateString) {
+      const options = { year: 'numeric', month: 'long', day: 'numeric'};
+      return new Date(dateString).toLocaleDateString(undefined, options);
+    }
+
     $(document).ready(function() {
-  var isSold = <%= item.is_sold %>;
-
-  if (isSold) {
-    $("#soldBanner").text("SOLD").removeClass("available");
-  } else {
-    $("#soldBanner").text("AVAILABLE").addClass("available");
-  }
-});
-
-function formatCreatedAt(dateString) {
-    const options = { year: 'numeric', month: 'long', day: 'numeric'};
-    return new Date(dateString).toLocaleDateString(undefined, options);
-  }
-
-  $(document).ready(function() {
-    const createdAt = '<%= item.created_at %>';
-    const formattedDate = formatCreatedAt(createdAt);
-    $("#createdAt").text(formattedDate);
-  });
+      const createdAt = '<%= item.created_at %>';
+      const formattedDate = formatCreatedAt(createdAt);
+      $("#createdAt").text(formattedDate);
+    });
   </script>
 </body>
 
