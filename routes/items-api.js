@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const itemDB = require("../db/queries/items");
+const usersDB = require("../db/queries/users");
 
 //this routes start with /api/items
 
@@ -37,19 +38,25 @@ router.post("/new", (req, res) => {
 });
 
 // Read: display an item by ID
-router.get("/:itemId", (req, res) => {
-  const itemId = req.params.itemId;
+router.get("/:itemId", async (req, res) => {
+  try {
+    const itemId = req.params.itemId;
 
-  itemDB
-    .getItemById(itemId)
-    .then((item) => {
-      console.log(item);
-      res.render("item", { item });
-  })
-  .catch((err) => {
+    const item = await itemDB.getItemById(itemId)
+    let itemArray = Object.values(item);
+    console.log(itemArray[6]);
+
+
+    let userEmail
+    if (item) {
+     userEmail = await usersDB.getEmailByUserId (itemArray[6])
+    }
+
+    res.render("item", { item, userEmail });
+  } catch (err) {
     console.error(err.message);
     res.send("error occured");
-  })
+  }
 });
 
 // Update: update an item by ID
