@@ -44,13 +44,15 @@ router.get("/:itemId", async (req, res) => {
 
     const item = await itemDB.getItemById(itemId)
     let itemArray = Object.values(item);
-    console.log(itemArray[6]);
-
+    console.log(item);
 
     let userEmail
     if (item) {
      userEmail = await usersDB.getEmailByUserId (itemArray[6])
     }
+
+    let sellerInfo
+
 
     res.render("item", { item, userEmail });
   } catch (err) {

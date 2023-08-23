@@ -37,7 +37,7 @@ item.description needs to be added to database with updated seeds file -->
         <p><%= item.description %></p>
         Posted At: <span id="createdAt"></span>
 
-        <<a href="mailto:<%= userEmail %>?subject=%5BSomeone%20is%20intrested%20in%20one%20of%20Your%20<%= item.title %>!%5D&body=Hi%2C%0D%0A%0D%0ASomeone%20has%20expressed%20that%20they%20are%20interested%20in%20the%20following%20item%3A%20localhost%3A8080%2Fapi%2Fitems%2F%3C%25%3D%20itemId%20%25%3E%0D%0A%0D%0AThank%20you%2C%0D%0A%0D%0ABargain%20Bazaar%20Team" target="_blank" class="btn btn-primary">Contact Seller</a>
+        <<a href="mailto:<%= userEmail %>?subject=%5BSomeone%20is%20interested%20in%20your%20item%3A%20<%= item.title %>&body=Hi%2C%0A%0ASomeone%20has%20expressed%20interest%20in%20the%20following%20item%3A%0Alocalhost%3A8080%2Fapi%2Fitem%2F<%= item.id %>%0A%0AThank%20you%2C%0A%0ABargainBazaar%20Team" target="_blank" class="btn btn-primary">Contact Seller</a>
 
       </section>
       <section class="sellerInfo">
