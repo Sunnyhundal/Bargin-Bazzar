@@ -5,6 +5,7 @@ require('dotenv').config();
 const sassMiddleware = require('./lib/sass-middleware');
 const express = require('express');
 const morgan = require('morgan');
+const cookieParser = require('cookie-parser');
 
 const PORT = process.env.PORT || 8080;
 const app = express();
@@ -25,6 +26,7 @@ app.use(
   })
 );
 app.use(express.static('public'));
+app.use(cookieParser());
 
 // Separated Routes for each Resource
 // Note: Feel free to replace the example routes below with your own
@@ -34,6 +36,7 @@ const usersRoutes = require('./routes/users');
 const itemsRoutes = require('./routes/items');
 const favoritesRoutes = require('./routes/favorites');
 const itemsApiRoutes = require('./routes/items-api');
+const loginRoutes = require('./routes/login');
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -44,14 +47,18 @@ app.use('/users', usersRoutes);
 app.use('/items', itemsRoutes);
 app.use('/favorites', favoritesRoutes);
 app.use('/api/items', itemsApiRoutes);
+app.use('/login', loginRoutes);
+
 // Note: mount other resources here, using the same pattern above
 
 // Home page
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 
+const items = require('./db/queries/items');
+
 app.get('/', (req, res) => {
-  res.render('index');
+  res.render('index',);
 });
 
 app.listen(PORT, () => {

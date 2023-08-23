@@ -20,7 +20,17 @@ const getEmailByUserId = (userId) => {
     });
 };
 
+const getUserNames = (userId) => {
+  return db
+  .query(`SELECT first_name, last_name FROM users WHERE id = $1;`, [userId])
+    .then((results) => {
+      if (results.rows.length > 0) {
+        return results.rows[0];
+      }else {
+        throw new Error("User not found");
+      }
+    });
+};
 
-
-module.exports = { getUsers, getEmailByUserId };
+module.exports = { getUsers, getEmailByUserId, getUserNames };
 
