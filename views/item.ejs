@@ -1,62 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<head>
-  <meta charset="UTF-8" >
-  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" >
+    <!-- App CSS -->
+    <link rel="stylesheet" href="/styles/main.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/item-listing.css" type="text/css" />
+    <link rel="stylesheet" href="/styles/is-sold-banner.css" type="text/css" />
 
-  <!-- App CSS -->
-  <link rel="stylesheet" href="/styles/main.css" type="text/css" />
-  <link rel="stylesheet" href="/styles/item-listing.css" type="text/css">
-  <link rel="stylesheet" href="/styles/is-sold-banner.css" type="text/css" />
+    <!-- External JS -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="/vendor/jquery-3.0.0.js"></script>
 
-  <!-- External JS -->
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-  <script src="/vendor/jquery-3.0.0.js"></script>
+    <!--------bootstrap-->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
 
-  <!--------bootstrap-->
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
-
-  <title>Item listing</title>
-</head>
-<!-- background is applied from main.css temporary to be able to see the containers</br>
+    <title>Item listing</title>
+  </head>
+  <!-- background is applied from main.css temporary to be able to see the containers</br>
 item.description needs to be added to database with updated seeds file -->
-<!-- Seller info needed currently waiting to be able to change items api route -->
-<body>
-  <main class="container">
-    <div class="item">
-      <figure class="item-photo">
-        <img src="<%= item.photo_url %>" alt="<%= item.title %>">
-      </figure>
-    </div>
-    <div class="item">
-      <section class="item-details">
-        <h2><%= item.title %></h2>
-        <div id="soldBanner" class="banner">AVAILABLE</div>
-        <p><%= item.description %></p>
-        Posted At: <span id="createdAt"></span>
-        <a href="mailto: [Seller's Email]&subject=[Someone%20is%20Interested%20in%20One%20of%20Your%20Items!]&body=Body-goes-here" target="_blank" class="btn btn-primary">Contact Seller</a>
-      </section>
-      <section class="sellerInfo">
+  <!-- Seller info needed currently waiting to be able to change items api route -->
+  <body>
+    <main class="container">
+      <div class="item">
+        <figure class="item-photo">
+          <img src="<%= item.photo_url %>" alt="<%= item.title %>" />
+        </figure>
+      </div>
+      <div class="item">
+        <section class="item-details">
+          <h2><%= item.title %></h2>
+          <div id="soldBanner" class="banner">AVAILABLE</div>
+          <p><%= item.description %></p>
+          Posted At: <span id="createdAt"></span>
+          <a
+            href="mailto: [Seller's Email]&subject=[Someone%20is%20Interested%20in%20One%20of%20Your%20Items!]&body=Body-goes-here"
+            target="_blank"
+            class="btn btn-primary"
+            >Contact Seller</a
+          >
+        </section>
+        <section class="sellerInfo"></section>
+      </div>
+    </main>
 
-      </section>
-    </div>
-  </main>
+    <script src="public/scripts/components/sold-banner.js"></script>
 
-  <script src="public/scripts/components/sold-banner.js"></script>
-  <script>
-    function formatCreatedAt(dateString) {
-      const options = { year: 'numeric', month: 'long', day: 'numeric'};
-      return new Date(dateString).toLocaleDateString(undefined, options);
-    }
+    <script>
+          $(document).ready(function() {
+        var isSold = <%= item.is_sold %>;
 
-    $(document).ready(function() {
-      const createdAt = '<%= item.created_at %>';
-      const formattedDate = formatCreatedAt(createdAt);
-      $("#createdAt").text(formattedDate);
-    });
-  </script>
-</body>
+        if (isSold) {
+          $("#soldBanner").text("SOLD").removeClass("available");
+        } else {
+          $("#soldBanner").text("AVAILABLE").addClass("available");
+        }
+      });
 
+      function formatCreatedAt(dateString) {
+          const options = { year: 'numeric', month: 'long', day: 'numeric'};
+          return new Date(dateString).toLocaleDateString(undefined, options);
+        }
+
+        $(document).ready(function() {
+          const createdAt = '<%= item.created_at %>';
+          const formattedDate = formatCreatedAt(createdAt);
+          $("#createdAt").text(formattedDate);
+        });
+    </script>
+  </body>
 </html>
