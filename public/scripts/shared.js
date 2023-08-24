@@ -34,7 +34,7 @@ const formatCurrency = (price) => {
  * @param {Item} item - item is an object containing item information
  * @return {string} HTML string of the item card
  */
-const createItem = (item) => `
+const createItem = (item, showSoldTag) => `
   <li class="item-card">
     <img class="item-card-thumbnail" src="${item.photo_url}" alt="Item thumbnail">
     <div class="card-body">
@@ -52,6 +52,7 @@ const createItem = (item) => `
           `}
       </div>
     </div>
+    ${item.is_sold && showSoldTag ? '<div class="sold-tag">SOLD</div>' : ''}
   </li>
 `;
 
@@ -72,7 +73,7 @@ const createRow = (_, index) => {
  * @param {Item[]} items - favorites is an array of favorite objects
  * @return {void}
  */
-const renderItemCards = (mainContainerName, items) => {
+const renderItemCards = (mainContainerName, items, showSoldTag) => {
   // initially store items in itemsStore for later modifications
   itemsStore.items = items;
 
@@ -93,7 +94,7 @@ const renderItemCards = (mainContainerName, items) => {
     const slicedItems = items.slice(startIndex, endIndex);
 
     slicedItems.forEach((item) => {
-      $row.append(createItem(item));
+      $row.append(createItem(item, showSoldTag));
     });
 
     $container.append($row);
@@ -126,7 +127,7 @@ const renderItemCards = (mainContainerName, items) => {
         });
 
         // rerender items cards for updated favorites
-        renderItemCards(mainContainerName, itemsStore.items);
+        renderItemCards(mainContainerName, itemsStore.items, showSoldTag);
       },
       error: (error) => {
         console.log('Error: ', error);
@@ -155,7 +156,7 @@ const renderItemCards = (mainContainerName, items) => {
         });
 
         // rerender items cards for updated favorites
-        renderItemCards(mainContainerName, itemsStore.items);
+        renderItemCards(mainContainerName, itemsStore.items, showSoldTag);
       },
       error: (error) => {
         console.log('Error: ', error);

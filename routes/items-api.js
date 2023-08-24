@@ -84,4 +84,18 @@ router.delete("/:itemId/delete", (req, res) => {
     });
 });
 
+router.get("/mylisting/:userId", (req, res) => {
+  const userId = req.params.userId;
+
+  itemDB
+    .getItemsByUserId(userId)
+    .then((items) => {
+      res.json(items);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).json({ error: "An error occured" });
+    });
+});
+
 module.exports = router;

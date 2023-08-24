@@ -2,8 +2,10 @@ const db = require('../connection');
 
 /**
  * @typedef {Object} Favorite
- * @property {string} title - the title of the item
  * @property {number} id - the id of the favorite
+ * @property {string} photo_url - the url of the photo
+ * @property {string} thumbnail_url - the url of the thumbnail
+ * @property {string} title - the title of the item
  * @property {number} price - the price of the item in cents
  * @property {number} item_id - the id of the item
  */
