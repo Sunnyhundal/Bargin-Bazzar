@@ -1,6 +1,5 @@
 /* eslint-disable no-undef */
 
-
 $(document).ready(() => {
   function getCookieUserId () {
     const cookie = document.cookie.split(';');
