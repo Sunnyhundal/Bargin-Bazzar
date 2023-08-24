@@ -10,9 +10,18 @@ router.get('/', (req, res) => {
   res.render('items');
 });
 
-// Dosplay add new items page
+// Display add new items page
 router.get('/new', (req, res) => {
   res.render('items_new');
+});
+
+// Display my items page
+router.get('/mylisting', (req, res) => {
+  if (!req.cookies.userId) {
+    res.render("index");
+  }
+
+  res.render('my-listing');
 });
 
 module.exports = router;

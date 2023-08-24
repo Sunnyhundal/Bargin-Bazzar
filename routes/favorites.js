@@ -1,17 +1,16 @@
 const { getFavoritesByUserId, createFavorite, unFavorite } = require('../db/queries/favorites');
 const express = require("express");
-const e = require('express');
 const router = express.Router();
 
 // GET /favorites
 // Show the favorites page.
 router.get("/", (req, res) => {
 
-if (!req.cookies.userId) {
-  res.render("index");
-}else{
-  res.render("favorites");
-}
+  if (!req.cookies.userId) {
+    res.render("index");
+  } else {
+    res.render("favorites");
+  }
 });
 
 // GET /favorites/:userId

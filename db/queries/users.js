@@ -1,20 +1,19 @@
-const db = require('../connection');
+const db = require("../connection");
 
 const getUsers = () => {
-  return db.query('SELECT * FROM users;')
-    .then(data => {
-      return data.rows;
-    });
+  return db.query("SELECT * FROM users;").then((data) => {
+    return data.rows;
+  });
 };
 
 const getEmailByUserId = (userId) => {
   console.log(userId);
   return db
-  .query(`SELECT email FROM users WHERE id = $1;`, [userId])
+    .query(`SELECT email FROM users WHERE id = $1;`, [userId])
     .then((results) => {
       if (results.rows.length > 0) {
         return results.rows[0].email;
-      }else {
+      } else {
         throw new Error("User not found");
       }
     });
@@ -22,15 +21,22 @@ const getEmailByUserId = (userId) => {
 
 const getUserNames = (userId) => {
   return db
-  .query(`SELECT first_name, last_name FROM users WHERE id = $1;`, [userId])
+    .query(`SELECT first_name, last_name FROM users WHERE id = $1;`, [userId])
     .then((results) => {
       if (results.rows.length > 0) {
         return results.rows[0];
-      }else {
+      } else {
         throw new Error("User not found");
       }
     });
 };
 
-module.exports = { getUsers, getEmailByUserId, getUserNames };
+const getUserInfo = function (userId) {
+  const queryString = `SELECT * FROM users WHERE id = $1;`;
 
+  return db.query(queryString, [userId]).then((res) => {
+    return res.rows[0];
+  });
+};
+
+module.exports = { getUsers, getEmailByUserId, getUserNames, getUserInfo };
