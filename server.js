@@ -58,7 +58,7 @@ app.use('/login', loginRoutes);
 const items = require('./db/queries/items');
 
 app.get('/', (req, res) => {
-  res.render('index', { items });
+  res.render('index2', { items });
 });
 
 app.listen(PORT, () => {
