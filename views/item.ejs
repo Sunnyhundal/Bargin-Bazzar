@@ -73,6 +73,30 @@ item.description needs to be added to database with updated seeds file -->
       const formattedDate = formatCreatedAt(createdAt);
       $("#createdAt").text(formattedDate);
     });
+
+    $(document).ready(function() {
+      const isSeller = item;
+      const isUser = res.cookie.userId;
+
+      if (isSeller === isUser) {
+        $("btn-container").hide();
+      }
+
+
+    });
+
+    function formatCreatedAt(dateString) {
+      const options = { year: 'numeric', month: 'long', day: 'numeric'};
+      return new Date(dateString).toLocaleDateString(undefined, options);
+    }
+
+    $(document).ready(function() {
+      const createdAt = '<%= item.created_at %>';
+      const formattedDate = formatCreatedAt(createdAt);
+      $("#createdAt").text(formattedDate);
+    });
+
+
     </script>
   </body>
 </html>
