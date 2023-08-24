@@ -42,17 +42,17 @@ router.get("/:itemId", async (req, res) => {
 
     const item = await itemDB.getItemById(itemId)
     let itemArray = Object.values(item);
-    console.log(item);
+    // console.log(item);
 
     let userEmail
     if (item) {
      userEmail = await usersDB.getEmailByUserId (itemArray[6])
     }
 
-    let sellerInfo
+    const sellerID = item.seller_id;
+    const sellerInfo = await usersDB.getUserInfo(sellerID);
 
-
-    res.render("item", { item, userEmail });
+    res.render("item", { item, userEmail, sellerInfo });
   } catch (err) {
     console.error(err.message);
     res.send("error occured");
