@@ -19,6 +19,7 @@
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
     />
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
 
     <title>Item listing</title>
   </head>
@@ -28,37 +29,25 @@ item.description needs to be added to database with updated seeds file -->
     <main class="container">
       <div class="item">
         <figure class="item-photo">
-          <img src="<%= item.photo_url %>" alt="<%= item.title %>" />
+          <img src="<%= item.photo_url %>" alt="<%= item.title %>" class="card-img" />
         </figure>
       </div>
 
       <div class="item">
-
         <div class="card item-details" style="width: 25rem;">
           <div class="card-body">
             <h5 class="card-title"><%= item.title %></h5>
-            <!-- <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6> -->
             <p class="card-text"><%= item.description %>
-              Some quick example text to build on the card title and make up the bulk of the card's content.
               <div id="soldBanner" class="banner">AVAILABLE</div>
               Posted At: <span id="createdAt"></span>
             </p>
-            <!-- <a href="#" class="card-link">Card link</a>
-            <a href="#" class="card-link">Another link</a> -->
+
           </div>
         </div>
-
-        <!-- <section class="item-details">
-          <h2><%= item.title %></h2>
-          <div id="soldBanner" class="banner">AVAILABLE</div>
-          <p><%= item.description %></p>
-          Posted At: <span id="createdAt"></span>
-        </section> -->
 
         <div class="card seller-info" style="width: 25rem;">
           <div class="card-body">
             <h5 class="card-text">Seller's name: <%= sellerInfo.name %></h5>
-            <!-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> -->
             <a
                 href="mailto:<%= sellerInfo.email %>?subject=%5BSomeone%20is%20interested%20in%20your%20item%3A%20<%= item.title %>&body=Hi%2C%0A%0ASomeone%20has%20expressed%20interest%20in%20the%20following%20item%3A%0Alocalhost%3A8080%2Fapi%2Fitem%2F<%= item.id %>%0A%0AThank%20you%2C%0A%0ABargainBazaar%20Team"
                 target="_blank"
@@ -67,20 +56,6 @@ item.description needs to be added to database with updated seeds file -->
               >
           </div>
         </div>
-
-        <!-- <section class="seller-info">
-          <ul>
-            <li><%= sellerInfo.name %></li>
-            <li>
-              <a
-                href="mailto:<%= sellerInfo.email %>?subject=%5BSomeone%20is%20interested%20in%20your%20item%3A%20<%= item.title %>&body=Hi%2C%0A%0ASomeone%20has%20expressed%20interest%20in%20the%20following%20item%3A%0Alocalhost%3A8080%2Fapi%2Fitem%2F<%= item.id %>%0A%0AThank%20you%2C%0A%0ABargainBazaar%20Team"
-                target="_blank"
-                class="btn btn-primary"
-                >Contact Seller</a
-              >
-            </li>
-          </ul>
-        </section> -->
       </div>
     </main>
 
@@ -115,16 +90,16 @@ item.description needs to be added to database with updated seeds file -->
         }
       });
 
-      function formatCreatedAt(dateString) {
-        const options = { year: "numeric", month: "long", day: "numeric" };
-        return new Date(dateString).toLocaleDateString(undefined, options);
-      }
+      // function formatCreatedAt(dateString) {
+      //   const options = { year: "numeric", month: "long", day: "numeric" };
+      //   return new Date(dateString).toLocaleDateString(undefined, options);
+      // }
 
-      $(document).ready(function () {
-        const createdAt = "<%= item.created_at %>";
-        const formattedDate = formatCreatedAt(createdAt);
-        $("#createdAt").text(formattedDate);
-      });
+      // $(document).ready(function () {
+      //   const createdAt = "<%= item.created_at %>";
+      //   const formattedDate = formatCreatedAt(createdAt);
+      //   $("#createdAt").text(formattedDate);
+      // });
     </script>
   </body>
 </html>
