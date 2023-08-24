@@ -126,10 +126,37 @@ const deleteItem = function(itemId) {
     });
 };
 
+const getItemsByUserId = (userId) => {
+  const queryString = `
+    SELECT
+      id,
+      title,
+      price,
+      is_sold,
+      photo_url,
+      thumbnail_url
+    FROM
+      items
+    WHERE
+      seller_id = $1;`;
+
+  return db
+    .query(queryString, [userId])
+    .then((res) => {
+      return res.rows;
+    })
+    .catch((err) => {
+
+      console.error(err.message);
+      throw err;
+    });
+};
+
 module.exports = {
   addItem,
   getAllItems,
   filterItemByPrice,
   deleteItem,
-  getItemById
+  getItemById,
+  getItemsByUserId
 };
