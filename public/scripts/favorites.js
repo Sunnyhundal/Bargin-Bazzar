@@ -1,19 +1,13 @@
 /* eslint-disable no-undef */
 
-
 $(document).ready(() => {
-  function getCookieUserId () {
-    const cookie = document.cookie.split(';');
-    const cookieUserId = cookie[0].split('=')[1];
-    return cookieUserId;
-  }
-  console.log(getCookieUserId());
-
+  const cookie = document.cookie && document.cookie.split(';');
+  const userId = cookie && cookie[0].split('=')[1];
 
   $.ajax({
     method: 'GET',
     userId: {},
-    url: '/favorites/'+getCookieUserId() // userId is hardcoded for now
+    url: `/favorites/${userId}`
   })
     .then((favorites) => {
       renderItemCards('.favorites-list', favorites);
