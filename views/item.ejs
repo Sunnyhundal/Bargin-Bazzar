@@ -31,72 +31,100 @@ item.description needs to be added to database with updated seeds file -->
           <img src="<%= item.photo_url %>" alt="<%= item.title %>" />
         </figure>
       </div>
+
       <div class="item">
-        <section class="item-details">
+
+        <div class="card item-details" style="width: 25rem;">
+          <div class="card-body">
+            <h5 class="card-title"><%= item.title %></h5>
+            <!-- <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6> -->
+            <p class="card-text"><%= item.description %>
+              Some quick example text to build on the card title and make up the bulk of the card's content.
+              <div id="soldBanner" class="banner">AVAILABLE</div>
+              Posted At: <span id="createdAt"></span>
+            </p>
+            <!-- <a href="#" class="card-link">Card link</a>
+            <a href="#" class="card-link">Another link</a> -->
+          </div>
+        </div>
+
+        <!-- <section class="item-details">
           <h2><%= item.title %></h2>
           <div id="soldBanner" class="banner">AVAILABLE</div>
           <p><%= item.description %></p>
           Posted At: <span id="createdAt"></span>
+        </section> -->
 
-          <div class="btn-container">
+        <div class="card seller-info" style="width: 25rem;">
+          <div class="card-body">
+            <h5 class="card-text">Seller's name: <%= sellerInfo.name %></h5>
+            <!-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> -->
             <a
-            href="mailto:<%= userEmail %>?subject=%5BSomeone%20is%20interested%20in%20your%20item%3A%20<%= item.title %>&body=Hi%2C%0A%0ASomeone%20has%20expressed%20interest%20in%20the%20following%20item%3A%0Alocalhost%3A8080%2Fapi%2Fitem%2F<%= item.id %>%0A%0AThank%20you%2C%0A%0ABargainBazaar%20Team"
-            target="_blank"
-            class="btn btn-primary"
-            >Contact Seller</a
-          >
+                href="mailto:<%= sellerInfo.email %>?subject=%5BSomeone%20is%20interested%20in%20your%20item%3A%20<%= item.title %>&body=Hi%2C%0A%0ASomeone%20has%20expressed%20interest%20in%20the%20following%20item%3A%0Alocalhost%3A8080%2Fapi%2Fitem%2F<%= item.id %>%0A%0AThank%20you%2C%0A%0ABargainBazaar%20Team"
+                target="_blank"
+                class="btn btn-primary"
+                >Contact Seller</a
+              >
           </div>
+        </div>
 
-        </section>
-        <section class="sellerInfo"></section>
+        <!-- <section class="seller-info">
+          <ul>
+            <li><%= sellerInfo.name %></li>
+            <li>
+              <a
+                href="mailto:<%= sellerInfo.email %>?subject=%5BSomeone%20is%20interested%20in%20your%20item%3A%20<%= item.title %>&body=Hi%2C%0A%0ASomeone%20has%20expressed%20interest%20in%20the%20following%20item%3A%0Alocalhost%3A8080%2Fapi%2Fitem%2F<%= item.id %>%0A%0AThank%20you%2C%0A%0ABargainBazaar%20Team"
+                target="_blank"
+                class="btn btn-primary"
+                >Contact Seller</a
+              >
+            </li>
+          </ul>
+        </section> -->
       </div>
     </main>
 
     <script>
-    $(document).ready(function() {
-      const isSold = item.is_sold;
+      $(document).ready(function () {
+        const isSold = item.is_sold;
 
-      if (isSold) {
-        $("#soldBanner").text("SOLD").removeClass("available");
-      } else {
-        $("#soldBanner").text("AVAILABLE").addClass("available");
-      }
-    });
+        if (isSold) {
+          $("#soldBanner").text("SOLD").removeClass("available");
+        } else {
+          $("#soldBanner").text("AVAILABLE").addClass("available");
+        }
+      });
 
-    function formatCreatedAt(dateString) {
-      const options = { year: 'numeric', month: 'long', day: 'numeric'};
-      return new Date(dateString).toLocaleDateString(undefined, options);
-    }
-
-    $(document).ready(function() {
-      const createdAt = '<%= item.created_at %>';
-      const formattedDate = formatCreatedAt(createdAt);
-      $("#createdAt").text(formattedDate);
-    });
-
-    $(document).ready(function() {
-      const isSeller = item;
-      const isUser = res.cookie.userId;
-
-      if (isSeller === isUser) {
-        $("btn-container").hide();
+      function formatCreatedAt(dateString) {
+        const options = { year: "numeric", month: "long", day: "numeric" };
+        return new Date(dateString).toLocaleDateString(undefined, options);
       }
 
+      $(document).ready(function () {
+        const createdAt = "<%= item.created_at %>";
+        const formattedDate = formatCreatedAt(createdAt);
+        $("#createdAt").text(formattedDate);
+      });
 
-    });
+      $(document).ready(function () {
+        const isSeller = item;
+        const isUser = res.cookie.userId;
 
-    function formatCreatedAt(dateString) {
-      const options = { year: 'numeric', month: 'long', day: 'numeric'};
-      return new Date(dateString).toLocaleDateString(undefined, options);
-    }
+        if (isSeller === isUser) {
+          $("btn-container").hide();
+        }
+      });
 
-    $(document).ready(function() {
-      const createdAt = '<%= item.created_at %>';
-      const formattedDate = formatCreatedAt(createdAt);
-      $("#createdAt").text(formattedDate);
-    });
+      function formatCreatedAt(dateString) {
+        const options = { year: "numeric", month: "long", day: "numeric" };
+        return new Date(dateString).toLocaleDateString(undefined, options);
+      }
 
-
+      $(document).ready(function () {
+        const createdAt = "<%= item.created_at %>";
+        const formattedDate = formatCreatedAt(createdAt);
+        $("#createdAt").text(formattedDate);
+      });
     </script>
   </body>
 </html>
