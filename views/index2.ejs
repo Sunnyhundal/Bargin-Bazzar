@@ -2,33 +2,42 @@
 <html lang="en">
 <!-- Include the header: contains all JS,CSS, and External files -->
 <%- include('./partials/_headern'); %>
+  <head></head>
 
 
+  <body>
 
-<body>
+    <%- include('./partials/_navibar'); %> <!-- Include the navbar -->
 
-  <%- include('./partials/_navibar'); %> <!-- Include the navbar -->
+      <div class="container">
+        <div class="search">
+          <form action="/items" method="get" id="search-items-form" class="search-items-form">
+            <label for="itemMin">Minimum Cost</label>
+            <input type="number" name="" placeholder="Lowest price" id="searchMin">
 
-  <div class="container">
-    <div class="search">
-      <form action="/items" method="get" id="search-items-form" class="search-items-form">
-      <label for="itemMin">Minimum Cost</label>
-      <input type="number" name="" placeholder="Lowest price" id="searchMin">
+            <label for="itemMax">Maximum Cost</label>
+            <input type="number" name="" placeholder="Highest price" id="searchMin">
 
-      <label for="itemMax">Maximum Cost</label>
-      <input type="number" name="" placeholder="Highest price" id="searchMin">
+            <button>Search</button>
+          </form>
+        </div>
 
-      <button>Search</button>
-    </div>
-</form>
-</div>
-<div class="container2">
+        <form method="POST" action="/api/items/filter">
+          <select name="choice">
+            <option value="high-to-low">Price: High to Low</option>
+            <option value="low-to-high">Price: Low to High</option>
+            <option value="alphabetical">Alphabetical: A-Z</option>
+          </select>
+          <button type="submit">Let's go!</button>
+        </form>
+      </div>
+      <div class="container2">
 
-  <%- include('./partials/_item-cards') %>
+        <%- include('./partials/_item-cards') %>
 
-</div>
+      </div>
 
-  <%- include('./partials/_footer') %> <!-- Include the footer -->
+      <%- include('./partials/_footer') %> <!-- Include the footer -->
 
-</body>
+  </body>
 </html>

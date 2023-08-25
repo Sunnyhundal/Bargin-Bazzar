@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const itemDB = require("../db/queries/items");
 const usersDB = require("../db/queries/users");
+const db = require("../db/connection");
 
 //this routes start with /api/items
 
@@ -99,5 +100,36 @@ router.get("/mylisting/:userId", (req, res) => {
       res.status(500).json({ error: "An error occured" });
     });
 });
+
+router.post('/filter', (req, res) => {
+  const choice = req.body.choice;
+  const userId = req.cookies.userId;
+
+  // Perform database query based on choice
+  let query;
+  if (choice === 'high-to-low') {
+    query = 'SELECT * FROM items ORDER BY price DESC';
+  } else if (choice === 'low-to-high') {
+    query = 'SELECT * FROM items ORDER BY price ASC';
+  } else if (choice === 'alphabetical') {
+    query = 'SELECT * FROM items ORDER BY title ASC';
+  } else {
+    // Handle other choices as needed
+    query = 'SELECT * FROM items';
+  }
+
+  db.query(query)
+    .then(result => {
+      const items = result.rows;
+      // res.json(rows);
+      res.render('index2', { items, userId })
+    })
+    .catch(error => {
+      console.error('Error:', error);
+      res.status(500).json({ error: 'Internal Server Error' });
+    });
+});
+
+
 
 module.exports = router;
