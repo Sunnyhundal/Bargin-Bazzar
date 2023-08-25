@@ -152,8 +152,8 @@ const getItemsByUserId = (userId) => {
     });
 };
 
-const updateItem = function(itemID, updatedData) {
-  const { title, price, description, photo_url, thumbnail_url } updatedData;
+const updateItem = function(itemId, updatedData) {
+  const { title, price, description, photo_url, thumbnail_url} = updatedData;
   const queryString = `
   UPDATE items
   SET title = $1, price = $2, description = $3, photo_url = $4, thumbnail_url = $5
