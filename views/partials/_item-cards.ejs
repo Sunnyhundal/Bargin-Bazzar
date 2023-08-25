@@ -2,6 +2,7 @@
   <div class="items-row">
     <ul>
       <% items.forEach((item) => { %>
+       <a href="items/<%= item.id %>">
         <li class="item-card">
         <img
           class="item-card-thumbnail"
@@ -12,8 +13,7 @@
           <div class="card-price"><%= item.price %></div>
           <div class="card-title-container">
             <h5 class="card-title"><%= item.title %></h5>
-
-
+            <% if (userId) { %>
             <!-- <%=  %>(item.favorite_id || item.is_favorite) ? ` -->
             <!-- <form class="unFavorite-form" id="<%= item.favorite_id %>">
                 <button class="unfavorite-form-button" type="submit"><i class="fa-solid fa-star unfavorite-icon"></i></button>
@@ -23,10 +23,12 @@
                 <button class="favorite-form-button" type="submit"><i class="fa-solid fa-star favorite-icon"></i></button>
               </form> -->
             <!-- `} -->
+            
           </div>
         </div>
       </li>
       </ul>
+    </a>
       <% }); %>
     </div>
 </div>

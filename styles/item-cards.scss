@@ -25,6 +25,11 @@
         justify-content: space-between;
       }
 
+      a{
+        text-decoration: none;
+        color: inherit
+      }
+
       img {
         object-fit: fill;
         height: 230px;
