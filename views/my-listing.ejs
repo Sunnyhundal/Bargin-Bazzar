@@ -18,12 +18,15 @@
   <script src="/vendor/jquery-3.0.0.js"></script>
   <script type="text/javascript" src="/scripts/shared.js"></script>
   <script type="text/javascript" src="/scripts/my-listing.js"></script>
+  <%- include('./partials/_headern'); %>
 
   <title>Bargain Bazaar | favorite items</title>
 </head>
 <body>
-
+  <%- include('./partials/_navibar'); %> <!-- Include the navbar -->
   <h1>my items</h1>
   <div class="my-listing"></div>
+
+  <%- include('./partials/_footer') %>
 </body>
 </html>

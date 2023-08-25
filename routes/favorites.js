@@ -5,11 +5,11 @@ const router = express.Router();
 // GET /favorites
 // Show the favorites page.
 router.get("/", (req, res) => {
-
+  const userId = req.cookies.userId;
   if (!req.cookies.userId) {
     res.render("index");
   } else {
-    res.render("favorites");
+    res.render("favorites", { userId });
   }
 });
 
