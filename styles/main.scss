@@ -29,6 +29,17 @@ body {
   //background-color: red;
 }
 
+.container-search {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  //align-items: start;
+  //flex-wrap: wrap;
+  width: 100%;
+  height: 100%;
+  //background-color: red;
+}
+
 
 .content {
   display: flex;
