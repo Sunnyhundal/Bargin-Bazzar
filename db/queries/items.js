@@ -165,13 +165,13 @@ const getFeaturedItems = (userId) => {
       items
     WHERE
       is_sold = false
-      ${userId ? `AND seller_id != $1` : ""}
+      ${userId ? 'AND seller_id != $1' : ''}
     ORDER BY
       RANDOM()
     LIMIT 8;`;
 
   return db
-    .query(queryString, [userId])
+    .query(queryString, userId ? [userId] : undefined)
     .then((res) => {
       return res.rows;
     })
