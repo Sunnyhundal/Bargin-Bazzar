@@ -7,6 +7,7 @@
     display: flex;
     list-style-type: none;
     column-gap: 15px;
+    padding: 0;
 
     .item-card {
       height: 300px;
@@ -23,6 +24,11 @@
       .card-title-container {
         display: flex;
         justify-content: space-between;
+      }
+
+      a{
+        text-decoration: none;
+        color: inherit
       }
 
       img {

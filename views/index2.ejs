@@ -2,38 +2,47 @@
 <html lang="en">
 <!-- Include the header: contains all JS,CSS, and External files -->
 <%- include('./partials/_headern'); %>
+  <head></head>
 
 
+  <body>
 
-<body>
-
-  <%- include('./partials/_navibar'); %> <!-- Include the navbar -->
-  <%- include('./edit-item'); %>
+    <%- include('./partials/_navibar'); %> <!-- Include the navbar -->
+    <%- include('./edit-item'); %>
   
 
 
-  <div class="container">
-    <div class="search">
-      <form action="/items" method="get" id="search-items-form" class="search-items-form">
-      <label for="itemMin">Minimum Cost</label>
-      <input type="number" name="" placeholder="Lowest price" id="searchMin">
+      <div class="container">
+        <div class="search">
+          <form action="/api/items/filter" method="POST" id="search-items-form" class="search-items-form">
+            <label for="itemMin">Minimum Cost</label>
+            <input type="number" name="minPrice" placeholder="Lowest price" id="searchMin">
 
-      <label for="itemMax">Maximum Cost</label>
-      <input type="number" name="" placeholder="Highest price" id="searchMin">
 
-      <button>Search</button>
-    </div>
-</form>
-</div>
-<div class="container2">
+            <label for="itemMax">Maximum Cost</label>
+            <input type="number" name="maxPrice" placeholder="Highest price" id="searchMax">
 
-  <%- include('./partials/_item-cards') %>
+            <button type="submit">Filter</button>
+          </form>
+        </div>
 
-</div>
+        <form method="POST" action="/api/items/sort">
+          <select name="choice">
+            <option value="high-to-low">Price: High to Low</option>
+            <option value="low-to-high">Price: Low to High</option>
+            <option value="a-to-z">Alphabetical: A-Z</option>
+            <option value="z-to-a">Alphabetical: Z-A</option>
+          </select>
+          <button type="submit">Let's go!</button>
+        </form>
+      </div>
+      <div class="container2">
 
-</body>
+        <%- include('./partials/_item-cards') %>
 
-  <%- include('./partials/_footer') %> <!-- Include the footer -->
+      </div>
 
-</body>
+      <%- include('./partials/_footer') %> <!-- Include the footer -->
+
+  </body>
 </html>

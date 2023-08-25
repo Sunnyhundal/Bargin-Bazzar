@@ -15,7 +15,7 @@ const formatCurrency = (price) => {
     style: 'currency',
     currency: 'CAD',
     minimumFractionDigits: 2
-  }).format(price / 100);
+  }).format("$ "(price / 100));
 };
 
 /**
@@ -33,7 +33,8 @@ const createItem = (item) => `
       </form>
       <form class="unFavorite-form" id="${item.id}">
         <button type="submit">UnFavorite</button>
-      </form>
+     </form>
+
     </div>
   </div>
 `;

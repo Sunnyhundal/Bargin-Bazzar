@@ -12,20 +12,23 @@
 
   <!-- App CSS -->
   <link rel="stylesheet" href="/styles/item-cards.css" type="text/css" />
-  <link rel="stylesheet" href="/styles/my-listing.css" type="text/css" />
+  <link rel="stylesheet" href="/styles/landing.css" type="text/css" />
 
   <!-- Scripts -->
   <script src="/vendor/jquery-3.0.0.js"></script>
   <script type="text/javascript" src="/scripts/shared.js"></script>
-  <script type="text/javascript" src="/scripts/my-listing.js"></script>
+  <script type="text/javascript" src="/scripts/landing.js"></script>
   <%- include('./partials/_headern'); %>
 
-  <title>Bargain Bazaar | favorite items</title>
+  <title>Bargain Bazaar | featured items</title>
 </head>
 <body>
   <%- include('./partials/_navibar'); %> <!-- Include the navbar -->
-  <h1>my items</h1>
-  <div class="my-listing"></div>
+  <h1>featured items</h1>
+  <div class="featured-items-container">
+    <div class="featured-items"></div>
+    <button class="show-all-items-button" id="show-all-items">Show All Items</button>
+  </div>
 
   <%- include('./partials/_footer') %>
 </body>
