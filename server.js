@@ -64,3 +64,9 @@ app.get('/', (req, res) => {
 app.listen(PORT, () => {
   console.log(`Example app listening on port ${PORT}`);
 });
+
+
+//test
+app.get('/dropdown', (req, res) => {
+  res.render('dropdown');
+});
