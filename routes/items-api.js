@@ -40,6 +40,7 @@ router.post("/new", (req, res) => {
 router.get("/:itemId", async (req, res) => {
   try {
     const itemId = req.params.itemId;
+    const userId = req.cookies.userId;
 
     const item = await itemDB.getItemById(itemId)
     let itemArray = Object.values(item);
@@ -53,7 +54,7 @@ router.get("/:itemId", async (req, res) => {
     const sellerID = item.seller_id;
     const sellerInfo = await usersDB.getUserInfo(sellerID);
 
-    res.render("item", { item, userEmail, sellerInfo });
+    res.render("item", { item, userEmail, sellerInfo, userId });
   } catch (err) {
     console.error(err.message);
     res.send("error occured");

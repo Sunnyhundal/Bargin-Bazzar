@@ -5,27 +5,19 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- App CSS -->
-    <link rel="stylesheet" href="/styles/main.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/item-listing.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/is-sold-banner.css" type="text/css" />
 
     <!-- External JS -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="/vendor/jquery-3.0.0.js"></script>
 
-    <!--------bootstrap-->
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    />
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+
+
+    <%- include('./partials/_headern'); %>
 
     <title>Item listing</title>
   </head>
   <!-- background is applied from main.css temporary to be able to see the containers</br>
 item.description needs to be added to database with updated seeds file -->
   <body>
+    <%- include('./partials/_navibar'); %> <!-- Include the navbar -->
     <main class="container">
       <div class="item">
         <figure class="item-photo">
