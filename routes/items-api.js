@@ -7,11 +7,12 @@ const usersDB = require("../db/queries/users");
 
 // Read: display all items
 router.get("/", (req, res) => {
+  const userId = req.cookies.userId;
 
   itemDB
     .getAllItems()
     .then((items) => {
-      res.render("items-list", { items });
+      res.render("index2", { items, userId });
 
     })
     .catch((err) => {

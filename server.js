@@ -55,10 +55,11 @@ app.use('/login', loginRoutes);
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 
-const items = require('./db/queries/items');
+const items = require('./routes/items-api');
 
 app.get('/', (req, res) => {
-  res.render('index2', { items });
+
+  res.redirect('/api/items');
 });
 
 app.listen(PORT, () => {
