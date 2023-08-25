@@ -7,7 +7,7 @@ $(document).ready(() => {
   $.ajax({
     method: 'GET',
     userId: {},
-    url: `/favorites/${userId}`
+    url: `http://localhost:8080/favorites/${userId}`
   })
     .then((favorites) => {
       renderItemCards('.favorites-list', favorites);
