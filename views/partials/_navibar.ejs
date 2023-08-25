@@ -1,9 +1,23 @@
 <div>
-<nav class="navbar">
+
+  <nav class="navbar">
   <p class="nav-logo">Logo</p>
   <ul class="nav-list">
-    <li><a href="#">Login</a></li>
-    <li><a href="#">Sign up</a></li>
+
+
+    <% if (userId) { %>
+      <li><a href="#">My favorites</a></li>
+      <li><a href="#">test</a></li>
+    <% } else { %>
+      <li><a href="#">Login</a></li>
+      <li><a href="#">Sign up</a></li>
+    <% }; %>
+
+
+
+
+
   </ul>
+
 </nav>
 </div>
