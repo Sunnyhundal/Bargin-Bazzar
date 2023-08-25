@@ -152,11 +152,39 @@ const getItemsByUserId = (userId) => {
     });
 };
 
+const getFeaturedItems = (userId) => {
+  const queryString = `
+    SELECT
+      id,
+      title,
+      price,
+      is_sold,
+      photo_url,
+      thumbnail_url
+    FROM
+      items
+    ${userId ? `WHERE seller_id != $1` : ""}
+    ORDER BY
+      RANDOM()
+    LIMIT 8;`;
+
+  return db
+    .query(queryString, [userId])
+    .then((res) => {
+      return res.rows;
+    })
+    .catch((err) => {
+      console.error(err.message);
+      throw err;
+    });
+};
+
 module.exports = {
   addItem,
   getAllItems,
   filterItemByPrice,
   deleteItem,
   getItemById,
-  getItemsByUserId
+  getItemsByUserId,
+  getFeaturedItems
 };
