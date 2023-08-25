@@ -1,0 +1,24 @@
+<div>
+
+  <nav class="navbar">
+  <a href="/"><p class="nav-logo" href="/">Logo</p></a>
+  <ul class="nav-list">
+
+
+    <% if (userId) { %>
+      <li><a href="/favorites">My favorites</a></li>
+      <li><a href="/items/mylisting">My Listings</a></li>
+      <li><a href="/logout">Logout</a></li>
+    <% } else { %>
+      <li><a href="#">Login</a></li>
+      <li><a href="#">Sign up</a></li>
+    <% }; %>
+
+
+
+
+
+  </ul>
+
+</nav>
+</div>

@@ -37,6 +37,8 @@ const itemsRoutes = require('./routes/items');
 const favoritesRoutes = require('./routes/favorites');
 const itemsApiRoutes = require('./routes/items-api');
 const loginRoutes = require('./routes/login');
+const landingRoutes = require('./routes/landing');
+const landingApiRoutes = require('./routes/landing-api');
 
 // Mount all resource routes
 // Note: Feel free to replace the example routes below with your own
@@ -48,6 +50,8 @@ app.use('/items', itemsRoutes);
 app.use('/favorites', favoritesRoutes);
 app.use('/api/items', itemsApiRoutes);
 app.use('/login', loginRoutes);
+app.use('/landing', landingRoutes);
+app.use('/api/landing', landingApiRoutes);
 
 // Note: mount other resources here, using the same pattern above
 
@@ -55,10 +59,12 @@ app.use('/login', loginRoutes);
 // Warning: avoid creating more routes in this file!
 // Separate them into separate routes files (see above).
 
-const items = require('./db/queries/items');
+const items = require('./routes/items-api');
 
 app.get('/', (req, res) => {
-  res.render('index', { items });
+  const userId = req.cookies.userId;
+
+  res.render('landing', { userId });
 });
 
 app.listen(PORT, () => {
