@@ -111,8 +111,10 @@ router.post('/filter', (req, res) => {
     query = 'SELECT * FROM items ORDER BY price DESC';
   } else if (choice === 'low-to-high') {
     query = 'SELECT * FROM items ORDER BY price ASC';
-  } else if (choice === 'alphabetical') {
+  } else if (choice === 'a-to-z') {
     query = 'SELECT * FROM items ORDER BY title ASC';
+  } else if (choice === 'z-to-a') {
+    query = 'SELECT * FROM items ORDER BY title DESC'
   } else {
     // Handle other choices as needed
     query = 'SELECT * FROM items';
