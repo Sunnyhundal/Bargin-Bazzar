@@ -2,6 +2,7 @@
 
 const express = require('express');
 const router  = express.Router();
+const itemDB = require('../db/queries/items');
 
 //this routes start with /items
 
@@ -37,22 +38,52 @@ router.get('/:itemId/edit', async (req, res) => {
   }
 });
 
+// POST route for updating the item
 router.post('/:itemId/edit', async (req, res) => {
   const itemId = req.params.itemId;
-  const updatedData = req.body; // Assuming the form data is properly structured
+  const updatedData = req.body;
 
   try {
-    const item = await itemDB.getItemById(itemId);
-    if (!item) {
-      res.status(404).send('Item not found');
-      return;
-    }
-    // Render the edit form view with the item's data
-    res.render('edit-item', { item });
+    // Update the item with the new data
+    await itemDB.updateItem(itemId, updatedData);
+    
+    // Redirect to the item's details page or another relevant page
+    res.redirect(`/items/${itemId}`);
   } catch (err) {
-    console.error(err.message);
-    res.status(500).send('Error fetching item data');
+    console.error(err); // Log the error to the console
+    res.status(500).send(`An error occurred: ${err.message}`);
   }
+});
+
+// Route to handle updating an item by ID
+router.route('/:itemId')
+  .get(async (req, res) => {
+    const itemId = req.params.itemId;
+
+    try {
+      const item = await itemDB.getItemById(itemId);
+      // Render the edit form view with the item's data
+      res.render('edit-item', { item });
+    } catch (err) {
+      console.error(err.message);
+      res.status(500).send('An error occurred');
+    }
+  })
+  .post(async (req, res) => {
+    const itemId = req.params.itemId;
+    const updatedData = req.body; 
+
+    try {
+      // Update the item with the new data
+      await itemDB.updateItem(itemId, updatedData);
+
+      // Redirect to the item's details page or another relevant page
+      res.redirect(`/items/${itemId}`);
+    } catch (err) {
+      console.error(err); // Log the error to the console
+      res.status(500).send(`An error occurred: ${err.message}`);
+    }
   });
+
 
 module.exports = router;
