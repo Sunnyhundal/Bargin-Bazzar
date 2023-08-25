@@ -17,11 +17,12 @@ router.get('/new', (req, res) => {
 
 // Display my items page
 router.get('/mylisting', (req, res) => {
+  const userId = req.cookies.userId;
   if (!req.cookies.userId) {
-    res.render("index");
+    res.render("index2");
   }
 
-  res.render('my-listing');
+  res.render('my-listing', { userId });
 });
 
 module.exports = router;
