@@ -1,9 +1,11 @@
 <div class="items-container">
   <div class="items-row">
 
+
       <% items.forEach((item) => { %>
         <ul>
         <a href="items/<%= item.id %>">
+
         <li class="item-card">
         <img
           class="item-card-thumbnail"
@@ -11,7 +13,9 @@
           alt="Item thumbnail"
         />
         <div class="card-body">
+
           <div class="card-price">$<%= item.price / 100 %></div>
+
           <div class="card-title-container">
             <h5 class="card-title"><%= item.title %></h5>
             <% if (userId) { %>

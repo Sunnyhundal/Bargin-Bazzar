@@ -7,27 +7,25 @@
   .items-row {
     display: flex;
     list-style-type: none;
-<<<<<<< Updated upstream
-    column-gap: 15px;
-=======
     column-gap: 5px;
     padding: 0;
     flex-wrap: wrap;
       flex-basis: auto;
       box-sizing: border-box;
->>>>>>> Stashed changes
+
 
     .item-card {
       height: 300px;
       width: 230px;
       list-style-type: none;
-<<<<<<< Updated upstream
 
-=======
+      overflow: hidden;
+      border: black 1px solid;
+      margin: 10px;
       overflow: hidden;
       border: black 1px solid;
       //margin: 5px;
->>>>>>> Stashed changes
+
       .card-body {
         padding: 16px;
       }
@@ -35,6 +33,11 @@
       .card-title-container {
         display: flex;
         justify-content: space-between;
+      }
+
+      a{
+        text-decoration: none;
+        color: inherit
       }
 
       img {

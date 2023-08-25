@@ -1,5 +1,5 @@
-$item-bg: #FFF;
-$card-size: 25rem;
+$item-bg: #ffffff;
+$card-size: 20rem;
 
 .container{
   display: flex;
@@ -14,7 +14,7 @@ $card-size: 25rem;
   display: flex;
   align-items: center;
   flex-direction: column;
-  max-width: $card-size;
+  width: $card-size;
   height: $card-size;
   margin: 2rem;
   background-color: $item-bg;
@@ -23,27 +23,37 @@ $card-size: 25rem;
 .item-photo {
   img {
     padding: 3rem;
-    max-width: 100%;
+    max-width: $card-size;
+    max-height: $card-size;
+    display: block;
   }
 }
 
 .item-details{
   flex-direction: column;
   justify-items: center;
-  max-width: $card-size;
+  width: $card-size;
   height: $card-size;
   margin: 2rem;
-  padding: 3rem;
+  padding: 2rem;
   background-color: $item-bg;
   font-size: 1.2rem;
 }
 
-.sellerInfo{
-  max-width: $card-size;
-  height: 200px;
-  display: flex;
-  margin: 2rem;
-  background-color: $item-bg;
+.btn {
+  margin: 1rem 0;
+}
+
+.container {
+  .seller-info{
+    width: $card-size;
+    height: 200px;
+    display: flex;
+    margin: 2rem;
+    padding: 2rem;
+    background-color: $item-bg;
+    list-style-type: none;
+  }
 }
 
 @media (max-width: 767px) {

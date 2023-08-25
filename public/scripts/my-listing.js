@@ -7,9 +7,9 @@ $(document).ready(() => {
   $.ajax({
     method: 'GET',
     userId: {},
-    url: `/favorites/${userId}`
+    url: `../api/items/mylisting/${userId}`
   })
-    .then((favorites) => {
-      renderItemCards('.favorites-list', favorites);
+    .then((items) => {
+      renderItemCards('.my-listing', items, true);
     });
 });

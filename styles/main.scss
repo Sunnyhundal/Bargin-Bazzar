@@ -1,23 +1,30 @@
 body {
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
+  // justify-content: center;
+  // align-items: center;
   min-height: 100vh;
 
-  background: rgb(163, 208, 219);
-  background: linear-gradient(
-    227deg,
-    rgba(163, 208, 219, 1) 0%,
-    rgba(163, 176, 219, 1) 20%,
-    rgba(163, 173, 219, 1) 34%,
-    rgba(163, 219, 208, 1) 59%,
-    rgba(163, 208, 219, 1) 74%,
-    rgba(163, 208, 219, 1) 100%
-  );
+  background: (#EBEBEB);
+
 }
-<<<<<<< Updated upstream
-=======
+
+.container{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  //align-items: start;
+  width: 100%;
+  height: 100%;
+}
+
+.container2{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+}
+
 
 .container{
   display: flex;
@@ -54,6 +61,7 @@ body {
   margin: 10px; /* Add some margin for spacing */
   box-sizing: border-box; /* Include padding and border in the width calculation */
 }
+
 
 .container-search {
   display: flex;
@@ -97,4 +105,3 @@ body {
 }
 
 
->>>>>>> Stashed changes

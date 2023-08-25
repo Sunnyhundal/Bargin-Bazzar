@@ -1,0 +1,17 @@
+.featured-items-container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.show-all-items-button {
+  border: none;
+  border-radius: 15px;
+  width: fit-content;
+  padding: 1rem;
+
+  &:hover {
+    background-color: cornflowerblue;
+    color: white;
+  }
+}

@@ -5,52 +5,55 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- App CSS -->
-    <link rel="stylesheet" href="/styles/main.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/item-listing.css" type="text/css" />
-    <link rel="stylesheet" href="/styles/is-sold-banner.css" type="text/css" />
 
     <!-- External JS -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="/vendor/jquery-3.0.0.js"></script>
 
-    <!--------bootstrap-->
-    <link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    />
+
+
+    <%- include('./partials/_headern'); %>
 
     <title>Item listing</title>
   </head>
   <!-- background is applied from main.css temporary to be able to see the containers</br>
 item.description needs to be added to database with updated seeds file -->
-<body>
-  <main class="container">
-    <div class="item">
-      <figure class="item-photo">
-        <img src="<%= item.photo_url %>" alt="<%= item.title %>">
-      </figure>
-    </div>
-    <div class="item">
-      <section class="item-details">
-        <h2><%= item.title %></h2>
-        <div id="soldBanner" class="banner">AVAILABLE</div>
-        <p><%= item.description %></p>
-        Posted At: <span id="createdAt"></span>
+  <body>
+    <%- include('./partials/_navibar'); %> <!-- Include the navbar -->
+    <main class="container">
+      <div class="item">
+        <figure class="item-photo">
+          <img src="<%= item.photo_url %>" alt="<%= item.title %>" class="card-img" />
+        </figure>
+      </div>
 
-        <<a href="mailto:<%= userEmail %>?subject=%5BSomeone%20is%20interested%20in%20your%20item%3A%20<%= item.title %>&body=Hi%2C%0A%0ASomeone%20has%20expressed%20interest%20in%20the%20following%20item%3A%0Alocalhost%3A8080%2Fapi%2Fitem%2F<%= item.id %>%0A%0AThank%20you%2C%0A%0ABargainBazaar%20Team" target="_blank" class="btn btn-primary">Contact Seller</a>
+      <div class="item">
+        <div class="card item-details" style="width: 25rem;">
+          <div class="card-body">
+            <h5 class="card-title"><%= item.title %></h5>
+            <p class="card-text"><%= item.description %>
+              <div id="soldBanner" class="banner">AVAILABLE</div>
+              Posted At: <span id="createdAt"></span>
+            </p>
 
-      </section>
-      <section class="sellerInfo">
+          </div>
+        </div>
 
-      </section>
-    </div>
-  </main>
-    <script src="public/scripts/components/sold-banner.js"></script>
+        <div class="card seller-info" style="width: 25rem;">
+          <div class="card-body">
+            <h5 class="card-text">Seller's name: <%= sellerInfo.name %></h5>
+            <a
+                href="mailto:<%= sellerInfo.email %>?subject=%5BSomeone%20is%20interested%20in%20your%20item%3A%20<%= item.title %>&body=Hi%2C%0A%0ASomeone%20has%20expressed%20interest%20in%20the%20following%20item%3A%0Alocalhost%3A8080%2Fapi%2Fitem%2F<%= item.id %>%0A%0AThank%20you%2C%0A%0ABargainBazaar%20Team"
+                target="_blank"
+                class="btn btn-primary"
+                >Contact Seller</a
+              >
+          </div>
+        </div>
+      </div>
+    </main>
 
     <script>
-          $(document).ready(function() {
-        var isSold = <%= item.is_sold %>;
+      $(document).ready(function () {
+        const isSold = item.is_sold;
 
         if (isSold) {
           $("#soldBanner").text("SOLD").removeClass("available");
@@ -60,15 +63,35 @@ item.description needs to be added to database with updated seeds file -->
       });
 
       function formatCreatedAt(dateString) {
-          const options = { year: 'numeric', month: 'long', day: 'numeric'};
-          return new Date(dateString).toLocaleDateString(undefined, options);
-        }
+        const options = { year: "numeric", month: "long", day: "numeric" };
+        return new Date(dateString).toLocaleDateString(undefined, options);
+      }
 
-        $(document).ready(function() {
-          const createdAt = '<%= item.created_at %>';
-          const formattedDate = formatCreatedAt(createdAt);
-          $("#createdAt").text(formattedDate);
-        });
+      $(document).ready(function () {
+        const createdAt = "<%= item.created_at %>";
+        const formattedDate = formatCreatedAt(createdAt);
+        $("#createdAt").text(formattedDate);
+      });
+
+      $(document).ready(function () {
+        const isSeller = item;
+        const isUser = res.cookie.userId;
+
+        if (isSeller === isUser) {
+          $("btn-container").hide();
+        }
+      });
+
+      // function formatCreatedAt(dateString) {
+      //   const options = { year: "numeric", month: "long", day: "numeric" };
+      //   return new Date(dateString).toLocaleDateString(undefined, options);
+      // }
+
+      // $(document).ready(function () {
+      //   const createdAt = "<%= item.created_at %>";
+      //   const formattedDate = formatCreatedAt(createdAt);
+      //   $("#createdAt").text(formattedDate);
+      // });
     </script>
   </body>
 </html>
