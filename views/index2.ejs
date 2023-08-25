@@ -9,19 +9,7 @@
 
     <%- include('./partials/_navibar'); %> <!-- Include the navbar -->
 
-      <div class="container">
-        <div class="search">
-          <form action="/items" method="get" id="search-items-form" class="search-items-form">
-            <label for="itemMin">Minimum Cost</label>
-            <input type="number" name="" placeholder="Lowest price" id="searchMin">
-
-            <label for="itemMax">Maximum Cost</label>
-            <input type="number" name="" placeholder="Highest price" id="searchMin">
-
-            <button>Search</button>
-          </form>
-        </div>
-
+      <div class="container-search">
         <form method="POST" action="/api/items/filter">
           <select name="choice">
             <option value="high-to-low">Price: High to Low</option>
@@ -31,6 +19,9 @@
           <button type="submit">Let's go!</button>
         </form>
       </div>
+        </div>
+
+
       <div class="container2">
 
         <%- include('./partials/_item-cards') %>
