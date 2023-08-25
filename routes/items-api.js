@@ -60,10 +60,20 @@ router.get("/:itemId", async (req, res) => {
   }
 });
 
-// Update: update an item by ID
-router.put("/:itemId", (req, res) => {
-  const itemId = req.params.id;
+// Handle item update (POST method)
+router.post("/:itemId", (req, res) => {
+  const itemId = req.params.itemId;
   const updatedItemData = req.body;
+
+  itemDB
+    .updateItem(itemId, updatedItemData) // Update the item in the database
+    .then(() => {
+      res.redirect(`/api/items/${itemId}`);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).json({ error: "An error occurred" });
+    });
 });
 
 // Destroy: delete an item by ID

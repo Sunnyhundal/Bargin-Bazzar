@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Users</title>
+
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="/styles/searchbar.css"/>
+
+  <script src="/vendor/jquery-3.0.0.js"></script>
+  <script defer src="/scripts/users.js"></script>
+</head>
+
+<form
+        method="POST"
+        action="/items/filter"
+    >
+
+        <select name="choice">
+
+            <option value="High-To-Low">
+                Price: High to Low
+            </option>
+
+            <option value="Low-To-High">
+                Price: Low to High
+            </option>
+
+            <option value="Alphabetical">
+                Alphabetical: A-Z
+            </option>
+
+            <option value="Alphabetical">
+              Alphabetical: Z-A
+          </option>
+
+        </select>
+
+        <button type="submit">Sort</button>
+
+<html>
+

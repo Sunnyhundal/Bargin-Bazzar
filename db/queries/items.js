@@ -152,11 +152,32 @@ const getItemsByUserId = (userId) => {
     });
 };
 
+const updateItem = function(itemID, updatedData) {
+  const { title, price, description, photo_url, thumbnail_url } updatedData;
+  const queryString = `
+  UPDATE items
+  SET title = $1, price = $2, description = $3, photo_url = $4, thumbnail_url = $5
+  WHERE id = $6
+  RETURNING *;`
+
+  const queryParams = [title, price, description, photo_url, thumbnail_url, itemId];
+
+  return db.query(queryString, queryParams)
+  .then((res) => {
+    return res.rows[0];
+  })
+  .catch((err) => {
+    console.error(err.message);
+    throw err;
+  });
+};
+
 module.exports = {
   addItem,
   getAllItems,
   filterItemByPrice,
   deleteItem,
   getItemById,
-  getItemsByUserId
+  getItemsByUserId,
+  updateItem
 };

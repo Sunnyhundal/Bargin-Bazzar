@@ -1,0 +1,57 @@
+/* Styling for the <form> element */
+form {
+  /* Display form elements in a column layout */
+  display: flex;
+  flex-direction: column;
+  /* Center the form horizontally */
+  align-items: center;
+  /* Add some margin around the form */
+  margin: 20px;
+  /* positioning element */
+  position: absolute;
+  top: 5em;
+  /* positioning element */
+  right: 2em;
+  /* add font to element */
+  font-family: "MuseoModerno", sans-serif;
+}
+
+/* Styling for the <select> element */
+select {
+  /* Add padding to the select box */
+  padding: 10px;
+  /* Add space below the select box */
+  margin-bottom: 10px;
+  /* Add a 1px solid gray border */
+  border: 1px solid #ccc;
+  /* Add rounded corners */
+  border-radius: 5px;
+  /* Set a fixed width for the select box */
+  width: 200px;
+  /* add font to element */
+  font-family: "MuseoModerno", sans-serif;
+}
+
+/* Styling for the <button> element */
+button {
+  /* Add padding to the button */
+  padding: 10px 20px;
+  /* Set the background color to blue */
+  background-color: #007bff;
+  /* Set the text color to white */
+  color: #fff;
+  /* Remove the default button border */
+  border: none;
+  /* Add rounded corners to the button */
+  border-radius: 5px;
+  /* Change the cursor to a pointer on hover */
+  cursor: pointer;
+  /* add font to element */
+  font-family: "MuseoModerno", sans-serif;
+}
+
+/* Styling for the <button> element on hover */
+button:hover {
+  /* Darken the background color on hover */
+  background-color: #0056b3;
+}
