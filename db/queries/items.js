@@ -163,7 +163,9 @@ const getFeaturedItems = (userId) => {
       thumbnail_url
     FROM
       items
-    ${userId ? `WHERE seller_id != $1` : ""}
+    WHERE
+      is_sold = false
+      ${userId ? `AND seller_id != $1` : ""}
     ORDER BY
       RANDOM()
     LIMIT 8;`;
