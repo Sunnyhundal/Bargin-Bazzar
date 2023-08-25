@@ -9,4 +9,8 @@ $(document).ready(() => {
     .then((featured) => {
       renderItemCards('.featured-items', featured);
     });
+
+  $('#show-all-items').on('click', () => {
+    window.location.href = "/api/items";
+  });
 });

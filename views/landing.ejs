@@ -25,7 +25,10 @@
 <body>
   <%- include('./partials/_navibar'); %> <!-- Include the navbar -->
   <h1>featured items</h1>
-  <div class="featured-items"></div>
+  <div class="featured-items-container">
+    <div class="featured-items"></div>
+    <button class="show-all-items-button" id="show-all-items">Show All Items</button>
+  </div>
 
   <%- include('./partials/_footer') %>
 </body>
