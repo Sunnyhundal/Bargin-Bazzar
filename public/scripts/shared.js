@@ -35,7 +35,7 @@ const formatCurrency = (price) => {
  * @return {string} HTML string of the item card
  */
 const createItem = (item, showSoldTag) => `
-<a href="api/items/${item.item_id}">
+<a href="http://localhost:8080/api/items/${item.item_id || item.id}">
 <li class="item-card">
     <img class="item-card-thumbnail" src="${item.photo_url}" alt="Item thumbnail">
     <div class="card-body">

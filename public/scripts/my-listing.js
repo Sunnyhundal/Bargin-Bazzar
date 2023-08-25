@@ -7,7 +7,7 @@ $(document).ready(() => {
   $.ajax({
     method: 'GET',
     userId: {},
-    url: `../api/items/mylisting/${userId}`
+    url: `http://localhost:8080/api/items/mylisting/${userId}`
   })
     .then((items) => {
       renderItemCards('.my-listing', items, true);
