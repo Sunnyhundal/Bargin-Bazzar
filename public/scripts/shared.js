@@ -35,7 +35,8 @@ const formatCurrency = (price) => {
  * @return {string} HTML string of the item card
  */
 const createItem = (item, showSoldTag) => `
-  <li class="item-card">
+<a href="api/items/${item.item_id}">
+<li class="item-card">
     <img class="item-card-thumbnail" src="${item.photo_url}" alt="Item thumbnail">
     <div class="card-body">
       <div class="card-price">${formatCurrency(item.price)}</div>
@@ -54,6 +55,7 @@ const createItem = (item, showSoldTag) => `
     </div>
     ${item.is_sold && showSoldTag ? '<div class="sold-tag">SOLD</div>' : ''}
   </li>
+</a>
 `;
 
 /**
