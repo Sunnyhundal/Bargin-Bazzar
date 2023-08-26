@@ -1,5 +1,5 @@
 /* Style for the banner */
-.banner {
+.sold {
   background-color: #FF5733;
   color: #FFF;
   padding: 5px 10px;
@@ -9,6 +9,12 @@
   margin-bottom: 10px;
 }
 
-.banner.available {
+.available {
   background-color: #3F3;
+  color: #FFF;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 10px;
 }
