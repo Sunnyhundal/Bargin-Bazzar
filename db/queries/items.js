@@ -1,6 +1,7 @@
 //favorites related database queries goes here
 const db = require("../connection");
 
+
 /**
  * Add a new item to the database.
  * @param { {title: string,
@@ -110,8 +111,8 @@ const filterItemByPrice = function(minPrice, maxPrice) {
 
 const deleteItem = function(itemId) {
   const queryString = `
-    DELETE * FROM items
-    WHERE id = $1;`;
+  DELETE FROM items
+  WHERE id = $1;`;
 
   return db
     .query(queryString, [itemId])
