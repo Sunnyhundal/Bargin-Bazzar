@@ -61,21 +61,7 @@ router.get("/:itemId", async (req, res) => {
   }
 });
 
-// Handle item update (POST method)
-router.post("/:itemId", (req, res) => {
-  const itemId = req.params.itemId;
-  const updatedItemData = req.body;
 
-  itemDB
-    .updateItem(itemId, updatedItemData) // Update the item in the database
-    .then(() => {
-      res.redirect(`/api/items/${itemId}`);
-    })
-    .catch((err) => {
-      console.error(err);
-      res.status(500).json({ error: "An error occurred" });
-    });
-});
 
 // Destroy: delete an item by ID
 router.delete("/:itemId/delete", (req, res) => {
@@ -174,5 +160,24 @@ router.post("/filter", (req, res) => {
       res.status(500).json({ error: 'An error occured' });
     });
 });
+
+// Handle item update (POST method)
+router.post("/:itemId", (req, res) => {
+  const itemId = req.params.itemId;
+  const updatedItemData = req.body;
+
+  console.log("Updating item with ID:", itemId);
+  console.log("Updated data:", updatedItemData);
+  itemDB
+    .updateItem(itemId, updatedItemData) // Update the item in the database
+    .then(() => {
+      res.redirect(`/api/items/${itemId}`);
+    })
+    .catch((err) => {
+      console.error(err);
+      res.status(500).json({ error: "An error occurred" });
+    });
+});
+
 
 module.exports = router;
