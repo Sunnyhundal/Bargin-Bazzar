@@ -9,12 +9,16 @@
   <body>
 
     <%- include('./partials/_navibar'); %> <!-- Include the navbar -->
+    
+  
+
 
       <div class="container">
         <div class="search">
           <form action="/api/items/filter" method="POST" id="search-items-form" class="search-items-form">
             <label for="itemMin">Minimum Cost</label>
             <input type="number" name="minPrice" placeholder="Lowest price" id="searchMin">
+
 
             <label for="itemMax">Maximum Cost</label>
             <input type="number" name="maxPrice" placeholder="Highest price" id="searchMax">
