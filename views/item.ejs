@@ -32,7 +32,11 @@ item.description needs to be added to database with updated seeds file -->
           <div class="card-body">
             <h5 class="card-title"><%= item.title %></h5>
             <p class="card-text"><%= item.description %>
-              <div id="soldBanner" class="banner">AVAILABLE</div>
+              <% if (!item.is_sold) { %>
+              <div class="available">AVAILABLE</div>
+              <% } else { %>
+              <div class="sold">SOLD</div>
+              <% }; %>
               Posted At: <span id="createdAt"></span>
             </p>
 
@@ -65,11 +69,11 @@ item.description needs to be added to database with updated seeds file -->
       $(document).ready(function () {
         const isSold = item.is_sold;
 
-        if (isSold) {
-          $("#soldBanner").text("SOLD").removeClass("available");
-        } else {
-          $("#soldBanner").text("AVAILABLE").addClass("available");
-        }
+        // if (isSold) {
+        //   $("#soldBanner").text("SOLD").removeClass("available");
+        // } else {
+        //   $("#soldBanner").text("AVAILABLE").addClass("available");
+        // }
       });
 
       function formatCreatedAt(dateString) {
