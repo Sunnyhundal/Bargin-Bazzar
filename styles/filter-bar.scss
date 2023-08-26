@@ -1,0 +1,26 @@
+.search-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 10px;
+  padding-right: 15px;
+}
+
+.sort {
+  display: flex;
+  margin-left: 2.3rem;
+}
+
+.sort {
+  .options {
+    padding: 0.3rem;
+    border-radius: 5px;
+  }
+}
+
+.search-item {
+  input {
+    border-radius: 5px;
+  }
+}

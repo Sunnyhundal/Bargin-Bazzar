@@ -2,39 +2,38 @@
 <html lang="en">
 <!-- Include the header: contains all JS,CSS, and External files -->
 <%- include('./partials/_headern'); %>
-  <head></head>
+  <head>
+  </head>
 
 
   <body>
 
-    <%- include('./partials/_navibar'); %> <!-- Include the navbar -->
-    
-  
+    <%- include('./partials/_navibar'); %> 
 
-
-      <div class="container">
-        <div class="search">
+      <div class="search-container">
+        <div class="search search-item">
           <form action="/api/items/filter" method="POST" id="search-items-form" class="search-items-form">
-            <label for="itemMin">Minimum Cost</label>
-            <input type="number" name="minPrice" placeholder="Lowest price" id="searchMin">
+            <!-- <label for="itemMin">Min Cost</label> -->
+            <input type="number" name="minPrice" placeholder="Minimum Price" id="searchMin">
 
+            <!-- <label for="itemMax">Max Cost</label> -->
+            <input type="number" name="maxPrice" placeholder="Maximum Price" id="searchMax">
 
-            <label for="itemMax">Maximum Cost</label>
-            <input type="number" name="maxPrice" placeholder="Highest price" id="searchMax">
-
-            <button type="submit">Filter</button>
+            <button type="submit" class="btn btn-outline-primary btn-sm">Filter</button>
           </form>
         </div>
 
-        <form method="POST" action="/api/items/sort">
-          <select name="choice">
-            <option value="high-to-low">Price: High to Low</option>
-            <option value="low-to-high">Price: Low to High</option>
-            <option value="a-to-z">Alphabetical: A-Z</option>
-            <option value="z-to-a">Alphabetical: Z-A</option>
-          </select>
-          <button type="submit">Let's go!</button>
-        </form>
+        <div class="search-item sort">
+          <form method="POST" action="/api/items/sort">
+            <select name="choice" class="options">
+              <option value="high-to-low">Price: High to Low</option>
+              <option value="low-to-high">Price: Low to High</option>
+              <option value="a-to-z">Alphabetical: A-Z</option>
+              <option value="z-to-a">Alphabetical: Z-A</option>
+            </select>
+            <button type="submit" class="btn btn-outline-primary btn-sm">Sort</button>
+          </form>
+        </div>
       </div>
       <div class="container2">
 
