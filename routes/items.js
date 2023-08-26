@@ -13,7 +13,8 @@ router.get('/', (req, res) => {
 
 // Display add new items page
 router.get('/new', (req, res) => {
-  res.render('items_new');
+  const userId = req.cookies.userId;
+  res.render('items_new', { userId } );
 });
 
 // Display my items page
@@ -47,7 +48,7 @@ router.post('/:itemId/edit', async (req, res) => {
   try {
     // Update the item with the new data
     await itemDB.updateItem(itemId, updatedData);
-    
+
     // Redirect to the item's details page or another relevant page
     res.redirect(`/items/${itemId}`);
   } catch (err) {
@@ -72,7 +73,7 @@ router.route('/:itemId')
   })
   .post(async (req, res) => {
     const itemId = req.params.itemId;
-    const updatedData = req.body; 
+    const updatedData = req.body;
 
     try {
       // Update the item with the new data
