@@ -43,7 +43,7 @@ item.description needs to be added to database with updated seeds file -->
           <div class="card-body">
             <h5 class="card-text">Seller's name: <%= sellerInfo.name %></h5>
             <a
-                href="mailto:<%= sellerInfo.email %>?subject=%5BSomeone%20is%20interested%20in%20your%20item%3A%20<%= item.title %>&body=Hi%2C%0A%0ASomeone%20has%20expressed%20interest%20in%20the%20following%20item%3A%0Alocalhost%3A8080%2Fapi%2Fitem%2F<%= item.id %>%0A%0AThank%20you%2C%0A%0ABargainBazaar%20Team"
+                href="mailto:<%= sellerInfo.email %>?subject=%5BSomeone%20is%20interested%20in%20your%20item%3A%20<%= item.title %>%5D&body=Hi%2C%0A%0ASomeone%20has%20expressed%20interest%20in%20the%20following%20item%3A%0Alocalhost%3A8080%2Fapi%2Fitem%2F<%= item.id %>%0A%0AThank%20you%2C%0A%0ABargainBazaar%20Team"
                 target="_blank"
                 class="btn btn-primary"
                 >Contact Seller</a
