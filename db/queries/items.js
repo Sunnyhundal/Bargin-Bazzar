@@ -27,8 +27,8 @@ const addItem = function(newItem) {
     newItem.description,
     // newItem.created_at,
     // newItem.seller_id,
-    newItem.photo_url,
-    newItem.thumbnail_url
+    newItem.photo_url || '/images/no_image.png', // default image when no photo_url
+    newItem.thumbnail_url || '/images/no_image.png', // default image when no thumbnail_url
   ];
 
   // Hardcoding the seller_id for now
