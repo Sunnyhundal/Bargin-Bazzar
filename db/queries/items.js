@@ -24,12 +24,9 @@ const addItem = function(newItem, sellerId) {
     newItem.price,
     newItem.is_sold,
     newItem.description,
-    newItem.created_at,
-    newItem.seller_id,
     newItem.photo_url || '/images/no_image.png',
     newItem.thumbnail_url || '/images/no_image.png',
     sellerId, // Add the seller_id from the function parameter
-
   ];
 
   const queryString = `

@@ -23,11 +23,11 @@ router.get("/", (req, res) => {
 
 
 // Create: add a new item
-router.post
-("/new", (req, res) => {
+router.post("/new", (req, res) => {
   const newItemData = req.body;
   const userId = req.cookies.userId;
 
+  // Pass the userId to the addItem function
   itemDB
     .addItem(newItemData, userId)
     .then((newItem) => {
