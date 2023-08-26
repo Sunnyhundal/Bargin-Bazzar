@@ -170,6 +170,7 @@ const updateItem = function(itemId, updatedData) {
     console.error(err.message);
     throw err;
   });
+};
 
 const getFeaturedItems = (userId) => {
   const queryString = `
@@ -208,9 +209,7 @@ module.exports = {
   deleteItem,
   getItemById,
   getItemsByUserId,
-
-  updateItem
-
+  updateItem,
   getFeaturedItems
 
 };
