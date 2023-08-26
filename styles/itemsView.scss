@@ -60,3 +60,21 @@
   margin-right: 2rem;
   background-color: white;
 }
+
+.edit-button { //my css that's not visible
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: #972525;
+  border: none;
+  border-radius: 4px;
+  text-decoration: none;
+  transition: background-color 0.2s ease-in-out;
+  position: relative; /* Enable positioning */
+  z-index: 4; /* Raise the button above other elements */
+
+}
+
+.edit-button:hover { //also not visible
+  background-color: #0056b3;
+}

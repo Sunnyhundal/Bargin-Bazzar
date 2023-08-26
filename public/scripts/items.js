@@ -75,3 +75,19 @@ const renderItems = (items) => {
     $('.items-container').append($row);
   });
 };
+
+/**
+ * Deletes an item by its ID.
+ *
+ * @param {number} itemId - ID of the item to be deleted
+ * @return {void}
+ */
+
+// allow user to delete item
+const deleteItem = async (itemId) => {
+  await pool.query('DELETE FROM items WHERE id = $1', [itemId]);
+};
+
+module.exports = {
+  deleteItem
+};
