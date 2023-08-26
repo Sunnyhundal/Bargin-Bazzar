@@ -34,7 +34,7 @@ const formatCurrency = (price) => {
  * @param {Item} item - item is an object containing item information
  * @return {string} HTML string of the item card
  */
-const createItem = (item, showSoldTag) => `
+const createItem = (item, showSoldTag, showFavoriteButton = true) => `
 <a href="http://localhost:8080/api/items/${item.item_id || item.id}">
 <li class="item-card">
     <img class="item-card-thumbnail" src="${item.photo_url}" alt="Item thumbnail">
@@ -42,7 +42,7 @@ const createItem = (item, showSoldTag) => `
       <div class="card-price">${formatCurrency(item.price)}</div>
       <div class="card-title-container">
         <h5 class="card-title">${item.title}</h5>
-        ${(item.favorite_id || item.is_favorite) ? `
+        ${showFavoriteButton ? (item.favorite_id || item.is_favorite) ? `
             <form class="unFavorite-form" id="${item.favorite_id}">
               <button class="unfavorite-form-button" type="submit"><i class="fa-solid fa-star unfavorite-icon"></i></button>
             </form>
@@ -50,7 +50,7 @@ const createItem = (item, showSoldTag) => `
             <form class="favorite-form" id="${item.item_id}">
               <button class="favorite-form-button" type="submit"><i class="fa-solid fa-star favorite-icon"></i></button>
             </form>
-          `}
+          ` : ''}
       </div>
     </div>
     ${item.is_sold && showSoldTag ? '<div class="sold-tag">SOLD</div>' : ''}
@@ -75,7 +75,7 @@ const createRow = (_, index) => {
  * @param {Item[]} items - favorites is an array of favorite objects
  * @return {void}
  */
-const renderItemCards = (mainContainerName, items, showSoldTag) => {
+const renderItemCards = (mainContainerName, items, showSoldTag, showFavoriteButton) => {
   // initially store items in itemsStore for later modifications
   itemsStore.items = items;
 
@@ -96,7 +96,7 @@ const renderItemCards = (mainContainerName, items, showSoldTag) => {
     const slicedItems = items.slice(startIndex, endIndex);
 
     slicedItems.forEach((item) => {
-      $row.append(createItem(item, showSoldTag));
+      $row.append(createItem(item, showSoldTag, showFavoriteButton));
     });
 
     $container.append($row);

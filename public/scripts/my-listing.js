@@ -10,6 +10,6 @@ $(document).ready(() => {
     url: `http://localhost:8080/api/items/mylisting/${userId}`
   })
     .then((items) => {
-      renderItemCards('.my-listing', items, true);
+      renderItemCards('.my-listing', items, true, false);
     });
 });
