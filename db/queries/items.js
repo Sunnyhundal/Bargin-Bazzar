@@ -202,6 +202,22 @@ const getFeaturedItems = (userId) => {
 
 };
 
+const isSold = function(itemId) {
+  const queryString = `
+    SET is_sold = true
+    WHERE id = $1;`;
+
+  return db
+    .query(queryString, [itemId])
+    .then((res) => {
+      return res.rows;
+    })
+    .catch((err) => {
+      console.error(err.message);
+      throw err;
+    });
+};
+
 module.exports = {
   addItem,
   getAllItems,
