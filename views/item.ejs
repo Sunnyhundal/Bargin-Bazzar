@@ -32,7 +32,11 @@ item.description needs to be added to database with updated seeds file -->
           <div class="card-body">
             <h5 class="card-title"><%= item.title %></h5>
             <p class="card-text"><%= item.description %>
-              <div id="soldBanner" class="banner">AVAILABLE</div>
+              <% if (!item.is_sold) { %>
+              <div class="available">AVAILABLE</div>
+              <% } else { %>
+              <div class="sold">SOLD</div>
+              <% }; %>
               Posted At: <span id="createdAt"></span>
             </p>
 
@@ -43,7 +47,7 @@ item.description needs to be added to database with updated seeds file -->
           <div class="card-body">
             <h5 class="card-text">Seller's name: <%= sellerInfo.name %></h5>
             <a
-                href="mailto:<%= sellerInfo.email %>?subject=%5BSomeone%20is%20interested%20in%20your%20item%3A%20<%= item.title %>&body=Hi%2C%0A%0ASomeone%20has%20expressed%20interest%20in%20the%20following%20item%3A%0Alocalhost%3A8080%2Fapi%2Fitem%2F<%= item.id %>%0A%0AThank%20you%2C%0A%0ABargainBazaar%20Team"
+                href="mailto:<%= sellerInfo.email %>?subject=%5BSomeone%20is%20interested%20in%20your%20item%3A%20<%= item.title %>%5D&body=Hi%2C%0A%0ASomeone%20has%20expressed%20interest%20in%20the%20following%20item%3A%0Alocalhost%3A8080%2Fapi%2Fitem%2F<%= item.id %>%0A%0AThank%20you%2C%0A%0ABargainBazaar%20Team"
                 target="_blank"
                 class="btn btn-primary"
                 >Contact Seller</a
@@ -65,11 +69,11 @@ item.description needs to be added to database with updated seeds file -->
       $(document).ready(function () {
         const isSold = item.is_sold;
 
-        if (isSold) {
-          $("#soldBanner").text("SOLD").removeClass("available");
-        } else {
-          $("#soldBanner").text("AVAILABLE").addClass("available");
-        }
+        // if (isSold) {
+        //   $("#soldBanner").text("SOLD").removeClass("available");
+        // } else {
+        //   $("#soldBanner").text("AVAILABLE").addClass("available");
+        // }
       });
 
       function formatCreatedAt(dateString) {
