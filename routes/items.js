@@ -31,8 +31,9 @@ router.get('/:itemId/edit', async (req, res) => {
 
   try {
     const item = await itemDB.getItemById(itemId);
-    // Render the edit form view with the item's data
-    res.render('edit-item', { item });
+    const userId = req.cookies.userId;
+    // Render the edit form view with the item's data and userId
+    res.render('edit-item', { item, userId });
   } catch (err) {
     console.error(err.message);
     res.status(500).send('An error occurred');
@@ -47,9 +48,12 @@ router.post('/:itemId/edit', async (req, res) => {
   try {
     // Update the item with the new data
     await itemDB.updateItem(itemId, updatedData);
+    console.log('Item updated successfully');
     
     // Redirect to the item's details page or another relevant page
-    res.redirect(`/items/${itemId}`);
+    //res.redirect(`/items/${itemId}`);
+     // Redirect back to the landing page
+     res.redirect('/');
   } catch (err) {
     console.error(err); // Log the error to the console
     res.status(500).send(`An error occurred: ${err.message}`);

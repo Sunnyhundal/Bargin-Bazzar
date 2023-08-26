@@ -3,9 +3,33 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bargain Bazaar | Edit items</title>
+  <title>Edit items</title>
+  <link rel="stylesheet" href="/styles/edit-item.css">
+
+     <!-- External CSS -->
+     <link
+     rel="stylesheet"
+     href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+     type="text/css"
+   />
+
+   <!-- App CSS -->
+   <link rel="stylesheet" href="/styles/item-cards.css" type="text/css" />
+
+   <!-- External JS -->
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+   <!--------bootstrap-->
+   <link
+     rel="stylesheet"
+     href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+   />
+
 </head>
 <body>
+    <!-- Include the navigation bar -->
+    <%- include('./partials/_headern'); %>
+   
   <h1>Edit Item</h1>
   <form method="post" action="/items/<%= item.id %>">
     <label for="title">Title:</label>
@@ -25,6 +49,11 @@
     <br>
     <button type="submit">Save Changes</button>
   </form>
+
+  console.log(userId);
+  <% { %>
+    <a href="/" class="edit-button" style="background-color: red;">Edit</a>
+  <% } %>
+
 </body>
 </html>
-
