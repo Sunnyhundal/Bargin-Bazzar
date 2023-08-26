@@ -47,7 +47,7 @@ const createItem = (item, showSoldTag, showFavoriteButton = true) => `
               <button class="unfavorite-form-button" type="submit"><i class="fa-solid fa-star unfavorite-icon"></i></button>
             </form>
           ` : `
-            <form class="favorite-form" id="${item.item_id || item.id}">
+          <form class="favorite-form" id="${item.item_id || item.id}">
               <button class="favorite-form-button" type="submit"><i class="fa-solid fa-star favorite-icon"></i></button>
             </form>
           ` : ''}

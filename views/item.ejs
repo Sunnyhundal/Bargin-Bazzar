@@ -43,14 +43,22 @@ item.description needs to be added to database with updated seeds file -->
           <div class="card-body">
             <h5 class="card-text">Seller's name: <%= sellerInfo.name %></h5>
             <a
-                href="mailto:<%= sellerInfo.email %>?subject=%5BSomeone%20is%20interested%20in%20your%20item%3A%20<%= item.title %>&body=Hi%2C%0A%0ASomeone%20has%20expressed%20interest%20in%20the%20following%20item%3A%0Alocalhost%3A8080%2Fapi%2Fitem%2F<%= item.id %>%0A%0AThank%20you%2C%0A%0ABargainBazaar%20Team"
+                href="mailto:<%= sellerInfo.email %>?subject=%5BSomeone%20is%20interested%20in%20your%20item%3A%20<%= item.title %>%5D&body=Hi%2C%0A%0ASomeone%20has%20expressed%20interest%20in%20the%20following%20item%3A%0Alocalhost%3A8080%2Fapi%2Fitem%2F<%= item.id %>%0A%0AThank%20you%2C%0A%0ABargainBazaar%20Team"
                 target="_blank"
                 class="btn btn-primary"
                 >Contact Seller</a
               >
+              <% if (userId == item.seller_id) { %>
+                <h5 class="card-text">Seller Listing Controls</h5>
+                <form action="https://localhost:8080/api/items/<%= item.id %>/delete" method="POST">
+                  <a href="/items/<%= item.id %>/edit" class="btn btn-primary">Edit listing</a>
+                  <button type="submit" class="btn btn-danger">Delete listing</button>
+                </form>
+                <% }; %>
           </div>
+
         </div>
-      </div>
+
     </main>
 
     <script>
@@ -79,8 +87,10 @@ item.description needs to be added to database with updated seeds file -->
         const isSeller = item;
         const isUser = res.cookie.userId;
 
-        if (isSeller === isUser) {
+        if (isSeller !== isUser) {
           $("btn-container").hide();
+        }else{
+          $("btn-container").show();
         }
       });
 
