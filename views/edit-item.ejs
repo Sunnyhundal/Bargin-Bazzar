@@ -6,7 +6,9 @@
   <%- include('./partials/_headern'); %>
   <link
   rel="stylesheet"
-  href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css"
+  href="
+https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css
+"
   type="text/css"
 />
 
@@ -21,16 +23,21 @@
 
 
 <!-- External JS -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="
+https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js
+"></script>
 
 <!--------bootstrap-->
-<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" />
+<link rel="stylesheet" href="
+https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css
+" />
 
 
 <!-- App JS -->
 <script type="text/javascript" src="/scripts/app.js"></script>
 <script type="text/javascript" src="scripts/users.js"></script>
 <script type="text/javascript" src="scripts/items.js"></script>
+<script src="/edit-item.js"></script>
 
 
 <script src="/vendor/jquery-3.0.0.js"></script>
@@ -48,44 +55,70 @@
     <section class="mainForm">
       <h1>Edit Item</h1>
 
+      <form method="post" action="/items/<%= 
+item.id
+ %>">
+        <div class="mb-2">
+          <label for="title" class="form-label">Title:</label>
+          <input type="text" class="form-control" id="title" name="title" value="<%= item.title %>" required>
+        </div>
+        <div class="mb-2">
+          <label for="price">Price:</label>
+          <input type="number" class="form-control" id="price" name="price" value="<%= item.price %>" required>
+        </div>
+        <div class="mb-2">
+          <Label for="title" class="form-label">This item is sold (check if sold)</Label>
+          <input type="checkbox" class="form-control" id="is_sold" name="is_sold" value="true" <% if (item.is_sold) { %> checked <% } %>>
+        </div>
+        <div class="mb-2">
+          <label for="description">Description:</label>
+          <textarea id="description" class="form-control" name="description" rows="4" required><%= item.description %></textarea>
+        </div>
+        <div class="mb-2">
+          <label for="photo_url">Photo URL:</label>
+          <input type="text" class="form-control" id="photo_url" name="photo_url" value="<%= item.photo_url %>" required>
+        </div>
+        <div class="mb-2">
+          <label for="thumbnail_url">Thumbnail URL:</label>
+          <input type="text" class="form-control" id="thumbnail_url" name="thumbnail_url" value="<%= item.thumbnail_url %>" required>
+        </div>
+        <div class="mb-2">
+          <button type="submit">Save Changes</button>
+        </div>
+      </form>
 
-  <form method="post" action="/items/<%= item.id %>">
-    <div class="mb-2">
-      <label for="title" class="form-label">Title:</label>
-      <input type="text" class="form-control" id="title" name="title" value="<%= item.title %>" required>
+      <button id="deleteButton" class="btn btn-danger">Delete Item</button>
+    </form>
+    <%- include('./partials/_footer') %>
+  
+    </section>
     </div>
+  </main>
+  
+  </body>
+  </html>
 
-    <div class="mb-2">
-      <label for="price">Price:</label>
-      <input type="number" class="form-control" id="price" name="price" value="<%= item.price %>" required>
-    </div>
-
-    <div class="mb-2">
-      <Label for="title" class="form-label">This item is sold (check if sold)</Label>
-      <input type="checkbox" class="form-control" id="is_sold" name="is_sold" value="true" <% if (item.is_sold) { %> checked <% } %>>
-    </div>
-    <div class="mb-2">
-      <label for="description">Description:</label>
-      <textarea id="description" class="form-control" name="description" rows="4" required><%= item.description %></textarea>
-    </div>
-    <div class="mb-2">
-      <label for="photo_url">Photo URL:</label>
-      <input type="text" class="form-control" id="photo_url" name="photo_url" value="<%= item.photo_url %>" required>
-    </div>
-    <div class="mb-2">
-      <label for="thumbnail_url">Thumbnail URL:</label>
-      <input type="text" class="form-control" id="thumbnail_url" name="thumbnail_url" value="<%= item.thumbnail_url %>" required>
-    </div>
-    <div class="mb-2">
-      <button type="submit">Save Changes</button>
-    </div>
-  </form>
-  <%- include('./partials/_footer') %>
-
-  </section>
-  </div>
-</main>
-
+  <script>
+    $(document).ready(function() {
+      $("#deleteButton").click(function() {
+        if (confirm("Are you sure you want to delete this item?")) {
+          const itemId = "<%= item.id%>";
+          console.log("test edit");
+          $.ajax({ 
+            type: "DELETE",
+            url: `/items/${itemId}`,
+            success: function(result) {
+              console.log("Item deleted successfully");
+              // Redirect to a different page after successful deletion
+              window.location.href = "http://localhost:8080/items/mylisting";
+            },
+            error: function(err) {
+              console.error("Error deleting item", err);
+            }
+          });
+        }
+      });
+    });
+  </script>
 </body>
-</html>
-
+</html> 

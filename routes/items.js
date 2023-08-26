@@ -90,5 +90,21 @@ router.route('/:itemId')
     }
   });
 
+  router.delete('/:itemId', async (req, res) => {
+    const itemId = req.params.itemId;
+  
+    try {
+      // Delete the item from the database using your database query method
+      await itemDB.deleteItem(itemId);
+  
+      // Respond with a success message
+      res.json({message: 'Item deleted successfully'});
+    } catch (err) {
+      console.error(err); // Log the error to the console
+      res.status(500).send(`An error occurred: ${err.message}`);
+    }
+  });
+
+
 
 module.exports = router;

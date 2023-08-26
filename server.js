@@ -56,6 +56,7 @@ app.use('/api/landing', landingApiRoutes);
 app.use('/logout', logoutRoutes);
 
 
+
 // Note: mount other resources here, using the same pattern above
 
 // Home page
