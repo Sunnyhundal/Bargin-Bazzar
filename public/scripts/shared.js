@@ -47,7 +47,7 @@ const createItem = (item, showSoldTag, showFavoriteButton = true) => `
               <button class="unfavorite-form-button" type="submit"><i class="fa-solid fa-star unfavorite-icon"></i></button>
             </form>
           ` : `
-            <form class="favorite-form" id="${item.item_id}">
+            <form class="favorite-form" id="${item.item_id || item.id}">
               <button class="favorite-form-button" type="submit"><i class="fa-solid fa-star favorite-icon"></i></button>
             </form>
           ` : ''}
@@ -107,10 +107,11 @@ const renderItemCards = (mainContainerName, items, showSoldTag, showFavoriteButt
   // add event listeners to favorite and unfavorite button
   $('.favorite-form').on('submit', function(event) {
     event.preventDefault();
+    event.stopPropagation();
     const itemId = $(this).attr('id');
 
     $.ajax({
-      url: '/favorites',
+      url: 'http://localhost:8080/favorites',
       method: 'POST',
       data: {
         itemId
@@ -139,10 +140,11 @@ const renderItemCards = (mainContainerName, items, showSoldTag, showFavoriteButt
 
   $('.unFavorite-form').on('submit', function(event) {
     event.preventDefault();
+    event.stopPropagation();
     const favoriteId = $(this).attr('id');
 
     $.ajax({
-      url: `/favorites/${favoriteId}`,
+      url: `http://localhost:8080/favorites/${favoriteId}`,
       method: 'DELETE',
       success: () => {
         itemsStore.items = items.map((item) => {
