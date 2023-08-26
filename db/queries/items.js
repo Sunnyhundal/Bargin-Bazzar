@@ -210,6 +210,5 @@ module.exports = {
   getItemById,
   getItemsByUserId,
   updateItem,
-  getFeaturedItems
-
+  getFeaturedItems,
 };
