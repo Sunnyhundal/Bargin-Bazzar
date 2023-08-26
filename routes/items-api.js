@@ -21,12 +21,15 @@ router.get("/", (req, res) => {
     });
 });
 
+
 // Create: add a new item
-router.post("/new", (req, res) => {
+router.post
+("/new", (req, res) => {
   const newItemData = req.body;
+  const userId = req.cookies.userId;
 
   itemDB
-    .addItem(newItemData)
+    .addItem(newItemData, userId)
     .then((newItem) => {
       res.redirect("/api/items");
     })
@@ -61,25 +64,48 @@ router.get("/:itemId", async (req, res) => {
   }
 });
 
-
-
-// Destroy: delete an item by ID
-router.delete("/:itemId/delete", (req, res) => {
+// Handle item update (POST method)
+router.post("/:itemId", (req, res) => {
   const itemId = req.params.itemId;
+  const updatedItemData = req.body;
 
+  console.log("Updating item with ID:", itemId);
+  console.log("Updated data:", updatedItemData);
   itemDB
-    .deleteItem(itemId)
-    .then((result) => {
-      if (result.error) {
-        res.status(500).json({ error: "Cannot delete item" });
-      } else {
-        res.redirect("api/items");
-      }
+    .updateItem(itemId, updatedItemData) // Update the item in the database
+    .then(() => {
+      res.redirect(`/api/items/${itemId}`);
     })
     .catch((err) => {
       console.error(err);
-      res.status(500).json({ error: "An error occured" });
+      res.status(500).json({ error: "An error occurred" });
     });
+});
+
+
+
+
+
+// Destroy: delete an item by ID
+router.post
+('/:itemId/delete', async (req, res) => {
+  const itemId = req.params.itemId;
+
+  try {
+    // First, get the item details
+    const item = await itemDB.getItemById(itemId);
+
+    if (!item) {
+      return res.status(404).send('Item not found');
+    }
+
+    // Proceed to delete the item
+    await itemDB.deleteItem(itemId);
+    res.redirect(`/items/`);
+  } catch (err) {
+    console.error(err);
+    res.status(500).send(`An error occurred: ${err.message}`);
+  }
 });
 
 router.get("/mylisting/:userId", (req, res) => {

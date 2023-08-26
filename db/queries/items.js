@@ -13,28 +13,26 @@ const db = require("../connection");
  *          thumnnail_url: string} } a new item
  * @return {Promise<{}>} A promise to the item.
  */
-const addItem = function(newItem) {
+const addItem = function(newItem, sellerId) {
   if (!newItem) {
     console.error("Invalid item object");
     return Promise.resolve(null);
   }
 
   const queryParams = [
-    // newItem.id,
     newItem.title,
     newItem.price,
     newItem.is_sold,
     newItem.description,
-    // newItem.created_at,
-    // newItem.seller_id,
-    newItem.photo_url,
-    newItem.thumbnail_url
+    newItem.photo_url || '/images/no_image.png',
+    newItem.thumbnail_url || '/images/no_image.png',
+    sellerId, // Add the seller_id from the function parameter
   ];
 
-  // Hardcoding the seller_id for now
-  // is_sold is returning null atm
-  const queryString = `INSERT INTO items ( title, price, is_sold, description, photo_url, thumbnail_url, seller_id)
-  VALUES ($1, $2, $3, $4, $5, $6, 1) RETURNING *;`;
+  const queryString = `
+    INSERT INTO items (title, price, is_sold, description, photo_url, thumbnail_url, seller_id)
+    VALUES ($1, $2, $3, $4, $5, $6, $7)
+    RETURNING *;`;
 
   return db
     .query(queryString, queryParams)
@@ -43,7 +41,7 @@ const addItem = function(newItem) {
       return res.rows[0];
     })
     .catch((err) => {
-      console.log(err);
+      console.error(err);
       return null;
     });
 };
@@ -153,14 +151,14 @@ const getItemsByUserId = (userId) => {
 };
 
 const updateItem = function(itemId, updatedData) {
-  const { title, price, description, photo_url, thumbnail_url} = updatedData;
+  const { title, price, is_sold, description, photo_url, thumbnail_url} = updatedData;
   const queryString = `
   UPDATE items
-  SET title = $1, price = $2, description = $3, photo_url = $4, thumbnail_url = $5
-  WHERE id = $6
+  SET title = $1, price = $2, is_sold =$3, description = $4, photo_url = $5, thumbnail_url = $6
+  WHERE id = $7
   RETURNING *;`
 
-  const queryParams = [title, price, description, photo_url, thumbnail_url, itemId];
+  const queryParams = [title, price, is_sold, description, photo_url, thumbnail_url, itemId];
 
   return db.query(queryString, queryParams)
   .then((res) => {
@@ -181,8 +179,15 @@ const getFeaturedItems = (userId) => {
       is_sold,
       photo_url,
       thumbnail_url
+      ${userId ? `,
+          (
+            SELECT favorites.id AS favorite_id
+            FROM favorites
+            WHERE favorites.user_id = $1 AND favorites.item_id = i.id
+          ) AS favorite_id
+        ` : ''}
     FROM
-      items
+      items i
     WHERE
       is_sold = false
       ${userId ? 'AND seller_id != $1' : ''}

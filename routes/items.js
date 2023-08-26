@@ -29,11 +29,12 @@ router.get('/mylisting', (req, res) => {
 
 router.get('/:itemId/edit', async (req, res) => {
   const itemId = req.params.itemId;
+  const userId = req.cookies.userId;
 
   try {
     const item = await itemDB.getItemById(itemId);
     // Render the edit form view with the item's data
-    res.render('edit-item', { item });
+    res.render('edit-item', { item, userId });
   } catch (err) {
     console.error(err.message);
     res.status(500).send('An error occurred');
@@ -43,14 +44,15 @@ router.get('/:itemId/edit', async (req, res) => {
 // POST route for updating the item
 router.post('/:itemId/edit', async (req, res) => {
   const itemId = req.params.itemId;
+  const userId = req.cookies.userId;
   const updatedData = req.body;
 
   try {
     // Update the item with the new data
-    await itemDB.updateItem(itemId, updatedData);
+    await itemDB.updateItem(itemId, updatedData, userId);
 
     // Redirect to the item's details page or another relevant page
-    res.redirect(`/items/${itemId}`);
+    res.redirect(`api/items/${itemId}`, { userId });
   } catch (err) {
     console.error(err); // Log the error to the console
     res.status(500).send(`An error occurred: ${err.message}`);
@@ -73,6 +75,7 @@ router.route('/:itemId')
   })
   .post(async (req, res) => {
     const itemId = req.params.itemId;
+    const userId = req.cookies.userId;
     const updatedData = req.body;
 
     try {
@@ -80,7 +83,7 @@ router.route('/:itemId')
       await itemDB.updateItem(itemId, updatedData);
 
       // Redirect to the item's details page or another relevant page
-      res.redirect(`/items/${itemId}`);
+      res.redirect(`/api/items/${itemId}`);
     } catch (err) {
       console.error(err); // Log the error to the console
       res.status(500).send(`An error occurred: ${err.message}`);

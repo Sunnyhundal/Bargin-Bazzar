@@ -48,9 +48,17 @@ item.description needs to be added to database with updated seeds file -->
                 class="btn btn-primary"
                 >Contact Seller</a
               >
+              <% if (userId == item.seller_id) { %>
+                <h5 class="card-text">Seller Listing Controls</h5>
+                <form action="https://localhost:8080/api/items/<%= item.id %>/delete" method="POST">
+                  <a href="/items/<%= item.id %>/edit" class="btn btn-primary">Edit listing</a>
+                  <button type="submit" class="btn btn-danger">Delete listing</button>
+                </form>
+                <% }; %>
           </div>
+
         </div>
-      </div>
+
     </main>
 
     <script>
@@ -79,8 +87,10 @@ item.description needs to be added to database with updated seeds file -->
         const isSeller = item;
         const isUser = res.cookie.userId;
 
-        if (isSeller === isUser) {
+        if (isSeller !== isUser) {
           $("btn-container").hide();
+        }else{
+          $("btn-container").show();
         }
       });
 

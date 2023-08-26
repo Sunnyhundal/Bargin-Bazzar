@@ -10,6 +10,6 @@ $(document).ready(() => {
     url: `http://localhost:8080/favorites/${userId}`
   })
     .then((favorites) => {
-      renderItemCards('.favorites-list', favorites);
+      renderItemCards('.favorites-list', favorites, true, true);
     });
 });

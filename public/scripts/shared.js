@@ -42,12 +42,12 @@ const createItem = (item, showSoldTag, showFavoriteButton = true) => `
       <div class="card-price">${formatCurrency(item.price)}</div>
       <div class="card-title-container">
         <h5 class="card-title">${item.title}</h5>
-        ${showFavoriteButton ? (item.favorite_id || item.is_favorite) ? `
+        ${showFavoriteButton ? item.favorite_id ? `
             <form class="unFavorite-form" id="${item.favorite_id}">
               <button class="unfavorite-form-button" type="submit"><i class="fa-solid fa-star unfavorite-icon"></i></button>
             </form>
           ` : `
-            <form class="favorite-form" id="${item.item_id}">
+          <form class="favorite-form" id="${item.item_id || item.id}">
               <button class="favorite-form-button" type="submit"><i class="fa-solid fa-star favorite-icon"></i></button>
             </form>
           ` : ''}
@@ -85,7 +85,7 @@ const renderItemCards = (mainContainerName, items, showSoldTag, showFavoriteButt
   // create a new container for items
   const $container = $('<div class="items-container"></div>');
 
-  const rowSize = Math.ceil(items.length / ITEMS_PER_ROW);
+  const rowSize = Math.ceil(itemsStore.items.length / ITEMS_PER_ROW);
   // rows for favorites. each row should contain 4 favorite items based on design spec
   const rows = Array.from({ length: rowSize}, createRow);
 
@@ -93,7 +93,7 @@ const renderItemCards = (mainContainerName, items, showSoldTag, showFavoriteButt
   rows.forEach(($row, index) => {
     const startIndex = index * ITEMS_PER_ROW;
     const endIndex = (index + 1) * ITEMS_PER_ROW;
-    const slicedItems = items.slice(startIndex, endIndex);
+    const slicedItems = itemsStore.items.slice(startIndex, endIndex);
 
     slicedItems.forEach((item) => {
       $row.append(createItem(item, showSoldTag, showFavoriteButton));
@@ -107,21 +107,21 @@ const renderItemCards = (mainContainerName, items, showSoldTag, showFavoriteButt
   // add event listeners to favorite and unfavorite button
   $('.favorite-form').on('submit', function(event) {
     event.preventDefault();
+    event.stopPropagation();
     const itemId = $(this).attr('id');
 
     $.ajax({
-      url: '/favorites',
+      url: 'http://localhost:8080/favorites',
       method: 'POST',
       data: {
         itemId
       },
-      success: (favorite) => {
-        itemsStore.items = items.map((item) => {
-          if (item.item_id === favorite.item_id) {
+      success: (response) => {
+        itemsStore.items = itemsStore.items.map((item) => {
+          if (item.item_id === response.item_id || item.id === response.item_id) {
             return {
               ...item,
-              favorite_id: favorite.id,
-              is_favorite: true,
+              favorite_id: response.id
             };
           }
 
@@ -129,7 +129,7 @@ const renderItemCards = (mainContainerName, items, showSoldTag, showFavoriteButt
         });
 
         // rerender items cards for updated favorites
-        renderItemCards(mainContainerName, itemsStore.items, showSoldTag);
+        renderItemCards(mainContainerName, itemsStore.items, showSoldTag, showFavoriteButton);
       },
       error: (error) => {
         console.log('Error: ', error);
@@ -139,18 +139,18 @@ const renderItemCards = (mainContainerName, items, showSoldTag, showFavoriteButt
 
   $('.unFavorite-form').on('submit', function(event) {
     event.preventDefault();
+    event.stopPropagation();
     const favoriteId = $(this).attr('id');
 
     $.ajax({
-      url: `/favorites/${favoriteId}`,
+      url: `http://localhost:8080/favorites/${favoriteId}`,
       method: 'DELETE',
       success: () => {
-        itemsStore.items = items.map((item) => {
+        itemsStore.items = itemsStore.items.map((item) => {
           if (item.favorite_id === Number(favoriteId)) {
             return {
               ...item,
-              favorite_id: null,
-              is_favorite: false,
+              favorite_id: null
             };
           }
 
@@ -158,7 +158,7 @@ const renderItemCards = (mainContainerName, items, showSoldTag, showFavoriteButt
         });
 
         // rerender items cards for updated favorites
-        renderItemCards(mainContainerName, itemsStore.items, showSoldTag);
+        renderItemCards(mainContainerName, itemsStore.items, showSoldTag, showFavoriteButton);
       },
       error: (error) => {
         console.log('Error: ', error);
