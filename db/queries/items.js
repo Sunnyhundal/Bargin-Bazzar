@@ -181,8 +181,15 @@ const getFeaturedItems = (userId) => {
       is_sold,
       photo_url,
       thumbnail_url
+      ${userId ? `,
+          (
+            SELECT favorites.id AS favorite_id
+            FROM favorites
+            WHERE favorites.user_id = $1 AND favorites.item_id = i.id
+          ) AS favorite_id
+        ` : ''}
     FROM
-      items
+      items i
     WHERE
       is_sold = false
       ${userId ? 'AND seller_id != $1' : ''}

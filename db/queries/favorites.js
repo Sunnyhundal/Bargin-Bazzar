@@ -44,6 +44,7 @@ const getFavoritesByUserId = (userId) => {
  * @returns {Promise<{ error?: any }>}}
  */
 const createFavorite = (userId, itemId) => {
+  console.log(userId, itemId);
   const query = `
     INSERT INTO favorites (user_id, item_id)
     VALUES ($1, $2)
